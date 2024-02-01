@@ -26,7 +26,7 @@ function ResponsiveAppBar() {
           
           <Box flexGrow={1} />
     <Typography variant="h4">
-      AbhayasKar
+      AbhyasKar
     </Typography>
     <Box flexGrow={1} />
           

@@ -1,11 +1,10 @@
-import Signup_Common from "./Global/SIgnup_Common"
-import Footer from "./Global/Footer"
+import SignupStud from "./component/Learner/SignupLearner"
 
 function App() {
   
   return (
     <>
-    <Signup_Common/>
+    <SignupStud/>
     
     </>
   )
