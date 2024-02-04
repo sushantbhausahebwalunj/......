@@ -1,11 +1,17 @@
-import SignupStud from "./component/Learner/SignupLearner"
+import SignupLearner from "./component/Learner/SignupLearner"
+import SignupCW from "./component/ContentWriter/SignUpCW"
+import ApprovalCW from "./component/ContentWriter/ApprovalCW"
+import SignIn from "./Global/SignIn"
+
 
 function App() {
   
   return (
     <>
-    <SignupStud/>
-    
+    {/* <SignupLeaner/> */}
+    {/* <SignupCW/> */}
+    {/* <ApprovalCW/> */}
+    <SignIn/>
     </>
   )
 }
