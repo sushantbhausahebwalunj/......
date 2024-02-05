@@ -1,6 +1,6 @@
 import React from "react";
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from "../Global/Header";
+import Footer from "../Global/Footer";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
 import {
