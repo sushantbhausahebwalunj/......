@@ -84,11 +84,11 @@ export default function SignupMentor() {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      {...register("fullName", {
-                        required: "Full name is required",
+                      {...register("firstName", {
+                        required: "FirstName is required",
                       })}
-                      error={Boolean(errors.fullName)}
-                      helperText={errors.fullName?.message}
+                      error={Boolean(errors.firstName)}
+                      helperText={errors.firstName?.message}
                       autoComplete="given-name"
                       name="firstName"
                       required
@@ -100,11 +100,11 @@ export default function SignupMentor() {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                      {...register("fullName", {
-                        required: "Full name is required",
+                      {...register("lastName", {
+                        required: "LastName is required",
                       })}
-                      error={Boolean(errors.fullName)}
-                      helperText={errors.fullName?.message}
+                      error={Boolean(errors.lastName)}
+                      helperText={errors.lastName?.message}
                       required
                       fullWidth
                       id="lastName"
@@ -115,15 +115,15 @@ export default function SignupMentor() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                      {...register("collegeEmail", {
-                        required: "College email is required",
+                      {...register("email", {
+                        required: "Email is required",
                         pattern: {
                           value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                           message: "Invalid email address",
                         },
                       })}
-                      error={Boolean(errors.collegeEmail)}
-                      helperText={errors.collegeEmail?.message}
+                      error={Boolean(errors.email)}
+                      helperText={errors.email?.message}
                       required
                       fullWidth
                       id="email"
@@ -141,9 +141,9 @@ export default function SignupMentor() {
                           message: "Password must have at least 8 characters",
                         },
                         pattern: {
-                          value: /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d]{8,}$/,
+                          value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
                           message:
-                            "Password must contain minimum eight characters, at least one letter and one number",
+                            "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
                         },
                       })}
                       error={Boolean(errors.password)}
@@ -168,10 +168,10 @@ export default function SignupMentor() {
                       helperText={errors.confirmPassword?.message}
                       required
                       fullWidth
-                      name="password"
+                      name="confirmPassword"
                       label="Confirm Password"
                       type="password"
-                      id="Cnf-password"
+                      id="confirmPassword"
                       autoComplete="new-password"
                     />
                   </Grid>

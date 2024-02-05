@@ -1,7 +1,7 @@
-import React,{useRef} from "react";
+import React, { useRef } from "react";
+import { useState } from 'react';
 import Header from "../../Global/Header";
 import Footer from "../../Global/Footer";
-import Avatar from '@mui/material/Avatar';
 import Stack from '@mui/material/Stack';
 import Card from '@mui/material/Card';
 import Button from '@mui/material/Button';
@@ -11,8 +11,9 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
+import { styled } from '@mui/material/styles';
 import Box from '@mui/material/Box';
-import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
@@ -23,23 +24,38 @@ import { useForm, Controller } from "react-hook-form";
 
 const defaultTheme = createTheme();
 
-export default function SignUpCW() {
+export default function SignupMentor() {
 
   const onSubmit = (data) => console.log(data);
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-      control,
-      watch
-    } = useForm({
-      mode: "onChange",
-    });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    watch
+  } = useForm({
+    mode: "onChange",
+  });
 
   const password = useRef({});
   password.current = watch("password", "");
+  const [isChecked, setIsChecked] = useState(false);
+  // for upload button
+  const VisuallyHiddenInput = styled('input')({
+    clip: 'rect(0 0 0 0)',
+    clipPath: 'inset(50%)',
+    height: 1,
+    overflow: 'hidden',
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    whiteSpace: 'nowrap',
+    width: 1,
+  });
+  //For Uploading the file 
+  const [fileName, setFileName] = useState('Upload Resume');
 
-  
+
 
   function Term() {
     return (
@@ -62,7 +78,7 @@ export default function SignUpCW() {
       <Header />
       <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="sm" >
-          <Card elevation={3} style={{ paddingLeft: "5%", paddingRight: "5%", margin: "3%", paddingBottom:"4%"  }}>
+          <Card elevation={3} style={{ paddingLeft: "5%", paddingRight: "5%", margin: "3%", paddingBottom: "4%" }}>
             <CssBaseline />
             <Box
               sx={{
@@ -72,9 +88,9 @@ export default function SignUpCW() {
                 alignItems: 'center',
               }}
             >
-            <Typography component="h1" variant="h2">
-              Sign up
-            </Typography>
+              <Typography component="h1" variant="h2">
+                Sign up
+              </Typography>
               <Typography component="h6" variant="h6">
                 For Content Writer
               </Typography>
@@ -82,11 +98,11 @@ export default function SignUpCW() {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                    {...register("fullName", {
-            required: "Full name is required",
-          })}
-          error={Boolean(errors.fullName)}
-          helperText={errors.fullName?.message}
+                      {...register("firstName", {
+                        required: "FirstName is required",
+                      })}
+                      error={Boolean(errors.firstName)}
+                      helperText={errors.firstName?.message}
                       autoComplete="given-name"
                       name="firstName"
                       required
@@ -98,11 +114,11 @@ export default function SignUpCW() {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                    {...register("fullName", {
-                      required: "Full name is required",
-                    })}
-                    error={Boolean(errors.fullName)}
-                    helperText={errors.fullName?.message}
+                      {...register("lastName", {
+                        required: "LastName is required",
+                      })}
+                      error={Boolean(errors.lastName)}
+                      helperText={errors.lastName?.message}
                       required
                       fullWidth
                       id="lastName"
@@ -113,15 +129,15 @@ export default function SignUpCW() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                     {...register("collegeEmail", {
-                                          required: "College email is required",
-                                          pattern: {
-                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                            message: "Invalid email address",
-                                          },
-                                        })}
-                                        error={Boolean(errors.collegeEmail)}
-                                        helperText={errors.collegeEmail?.message}
+                      {...register("email", {
+                        required: "Email is required",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                          message: "Invalid email address",
+                        },
+                      })}
+                      error={Boolean(errors.email)}
+                      helperText={errors.email?.message}
                       required
                       fullWidth
                       id="email"
@@ -131,51 +147,26 @@ export default function SignUpCW() {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <TextField
-                    {...register("password", {
-                                        required: "Password is required",
-                                        minLength: {
-                                          value: 8,
-                                          message: "Password must have at least 8 characters",
-                                        },
-                                        pattern: {
-                                          value: /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d]{8,}$/,
-                                          message:
-                                            "Password must contain minimum eight characters, at least one letter and one number",
-                                        },
-                                      })}
-                                      error={Boolean(errors.password)}
-                                      helperText={errors.password?.message}
-                      required
-                      fullWidth
-                      name="password"
-                      label="Password"
-                      type="password"
-                      id="password"
-                      autoComplete="new-password"
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField
-                    {...register("confirmPassword", {
-                                        required: "Confirm Password is required",
-                                        validate: (value) =>
-                                          value === password.current || "The passwords do not match",
-                                      })}
-                                      error={Boolean(errors.confirmPassword)}
-                                                      helperText={errors.confirmPassword?.message}
-                      required
-                      fullWidth
-                      name="password"
-                      label="Confirm Password"
-                      type="password"
-                      id="Cnf-password"
-                      autoComplete="new-password"
-                    />
+                    <Box display="flex" justifyContent="center">
+                      <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
+                        {fileName}
+                        <input
+                          type="file"
+                          hidden
+                          onChange={(e) => setFileName(e.target.files[0].name)}
+                        />
+                      </Button>
+                    </Box>
                   </Grid>
                   <Grid item xs={1}>
                     <FormControlLabel
-                      control={<Checkbox value="allowExtraEmails" color="primary" />}
+                      control={
+                        <Checkbox
+                          value="allowExtraEmails"
+                          color="primary"
+                          onChange={(e) => setIsChecked(e.target.checked)}
+                        />
+                      }
                     />
                   </Grid>
                   <Grid item xs={11}>
@@ -188,6 +179,7 @@ export default function SignUpCW() {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                     onClick={handleSubmit(onSubmit)}
+                    disabled={!isChecked}
                   >
                     Sign Up
                   </Button>
@@ -198,14 +190,14 @@ export default function SignUpCW() {
                       </Link>
                     </Grid>
                   </Grid>
-                  <Stack direction="row" spacing={2} style={{marginLeft:"25%" ,marginTop:"2%"}}>
-      <Button variant="outlined" startIcon={<FcGoogle/>} style={{backgroundColor:"pink"}}>
-        Google
-      </Button>
-      <Button variant="outlined" startIcon={<FaFacebook/>} style={{backgroundColor:"pink"}}>
-        Facebook
-      </Button>
-    </Stack>
+                  <Stack direction="row" spacing={2} style={{ marginLeft: "25%", marginTop: "2%" }}>
+                    <Button variant="outlined" startIcon={<FcGoogle />} style={{ backgroundColor: "pink" }}>
+                      Google
+                    </Button>
+                    <Button variant="outlined" startIcon={<FaFacebook />} style={{ backgroundColor: "pink" }}>
+                      Facebook
+                    </Button>
+                  </Stack>
                 </Grid>
               </Box>
             </Box>
