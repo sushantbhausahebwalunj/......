@@ -1,6 +1,7 @@
 import SignupStud from "./component/Learner/SignupLearner"
 import SignUpCW from  './component/ContentWriter/SignUpCW'
-import SignUp_Common from  './global//SignUp_Common'
+// import SignUp_Common from  './global//SignUp_Common'
+import  SignupMentor from "./component/Mentor/SignupMentor";
 
 function App() {
   
@@ -9,6 +10,8 @@ function App() {
     <SignupStud/>
     {/* <SignUpCW/> */}
     {/* <SignUp_Common/> */}
+     {/* <SignupMentor/> */}
+    
     </>
   )
 }

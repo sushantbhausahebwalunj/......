@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React,{useRef} from "react";
 import Header from "../../Global/Header";
 import Footer from "../../Global/Footer";
 import Avatar from '@mui/material/Avatar';
@@ -18,20 +18,28 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { FcGoogle } from "react-icons/fc";
 import { FaFacebook } from "react-icons/fa";
+import { useForm, Controller } from "react-hook-form";
 
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
+export default function SignupStud() {
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
+  const onSubmit = (data) => console.log(data);
+    const {
+      register,
+      handleSubmit,
+      formState: { errors },
+      control,
+      watch
+    } = useForm({
+      mode: "onChange",
     });
-  };
+
+  const password = useRef({});
+  password.current = watch("password", "");
+
+  
 
   function Term() {
     return (
@@ -54,7 +62,7 @@ export default function SignUp() {
       <Header />
       <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="sm" >
-          <Card elevation={3} style={{ paddingLeft: "5%", paddingRight: "5%", margin: "3%" }}>
+          <Card elevation={3} style={{ paddingLeft: "5%", paddingRight: "5%", margin: "3%", paddingBottom:"4%"  }}>
             <CssBaseline />
             <Box
               sx={{
@@ -64,16 +72,21 @@ export default function SignUp() {
                 alignItems: 'center',
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
-                Sign up
+            <Typography component="h1" variant="h2">
+              Sign up
+            </Typography>
+              <Typography component="h6" variant="h6">
+                For Learner
               </Typography>
               <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
+                    {...register("fullName", {
+            required: "Full name is required",
+          })}
+          error={Boolean(errors.fullName)}
+          helperText={errors.fullName?.message}
                       autoComplete="given-name"
                       name="firstName"
                       required
@@ -85,6 +98,11 @@ export default function SignUp() {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
+                    {...register("fullName", {
+                      required: "Full name is required",
+                    })}
+                    error={Boolean(errors.fullName)}
+                    helperText={errors.fullName?.message}
                       required
                       fullWidth
                       id="lastName"
@@ -95,6 +113,15 @@ export default function SignUp() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                     {...register("collegeEmail", {
+                                          required: "College email is required",
+                                          pattern: {
+                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                                            message: "Invalid email address",
+                                          },
+                                        })}
+                                        error={Boolean(errors.collegeEmail)}
+                                        helperText={errors.collegeEmail?.message}
                       required
                       fullWidth
                       id="email"
@@ -105,6 +132,20 @@ export default function SignUp() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                    {...register("password", {
+                                        required: "Password is required",
+                                        minLength: {
+                                          value: 8,
+                                          message: "Password must have at least 8 characters",
+                                        },
+                                        pattern: {
+                                          value: /^(?=.[A-Za-z])(?=.\d)[A-Za-z\d]{8,}$/,
+                                          message:
+                                            "Password must contain minimum eight characters, at least one letter and one number",
+                                        },
+                                      })}
+                                      error={Boolean(errors.password)}
+                                      helperText={errors.password?.message}
                       required
                       fullWidth
                       name="password"
@@ -116,6 +157,13 @@ export default function SignUp() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
+                    {...register("confirmPassword", {
+                                        required: "Confirm Password is required",
+                                        validate: (value) =>
+                                          value === password.current || "The passwords do not match",
+                                      })}
+                                      error={Boolean(errors.confirmPassword)}
+                                                      helperText={errors.confirmPassword?.message}
                       required
                       fullWidth
                       name="password"
@@ -139,6 +187,7 @@ export default function SignUp() {
                     fullWidth
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
+                    onClick={handleSubmit(onSubmit)}
                   >
                     Sign Up
                   </Button>
