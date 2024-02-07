@@ -1,8 +1,11 @@
 import React from 'react'
+import NavBar from '../../Global/NavBar'
 
 function LandingPageLearner() {
   return (
-    <div>LandingPageLearner</div>
+    <div>
+      <NavBar/>
+    </div>
   )
 }
 
