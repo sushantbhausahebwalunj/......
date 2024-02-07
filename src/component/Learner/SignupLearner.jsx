@@ -82,8 +82,8 @@ export default function SignUp() {
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                    {...register("fullName", {
-            required: "Full name is required",
+                    {...register("firstName", {
+            required: "First name is required",
           })}
           error={Boolean(errors.fullName)}
           helperText={errors.fullName?.message}
@@ -98,8 +98,8 @@ export default function SignUp() {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                    {...register("fullName", {
-                      required: "Full name is required",
+                    {...register("lastName", {
+                      required: "Last name is required",
                     })}
                     error={Boolean(errors.fullName)}
                     helperText={errors.fullName?.message}
