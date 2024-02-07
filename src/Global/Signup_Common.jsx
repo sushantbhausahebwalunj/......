@@ -316,14 +316,15 @@ function Signup_Common() {
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
               <Typography
-                variant="h5"
+                variant="h4"
                 style={{
                   display: "flex",
                   justifyContent: "center",
                   padding: "10px",
                 }}
               >
-                How do you want to use Abhyaskar?
+                {/* Sign Up as */}
+               How do you want to use Abhhyaskar
               </Typography>
             </Grid>
             <Grid item xs={12} sm={12}>
@@ -335,7 +336,7 @@ function Signup_Common() {
                   padding: "10px",
                 }}
               >
-                This will help to personalize the experience
+                This will help to personalize your experience
               </Typography>
             </Grid>
 
@@ -344,19 +345,19 @@ function Signup_Common() {
                 <FormControlLabel
                   value="option1"
                   control={<Radio />}
-                  label="Continue as Student/Developer"
+                  label="Learner"
                   style={{ margin: "10px 0" }}
                 />
                 <FormControlLabel
                   value="option2"
                   control={<Radio />}
-                  label="Continue as a Content Writer"
+                  label="Content Writer"
                   style={{ margin: "10px 0" }}
                 />
                 <FormControlLabel
                   value="option3"
                   control={<Radio />}
-                  label="Continue as Mentor"
+                  label="Mentor"
                   style={{ margin: "10px 0" }}
                 />
               </RadioGroup>

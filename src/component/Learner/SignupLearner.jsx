@@ -1,4 +1,5 @@
-import React,{useRef} from "react";
+import React, { useRef } from "react";
+import { useState } from 'react';
 import Header from "../../Global/Header";
 import Footer from "../../Global/Footer";
 import Avatar from '@mui/material/Avatar';
@@ -23,23 +24,24 @@ import { useForm, Controller } from "react-hook-form";
 
 const defaultTheme = createTheme();
 
-export default function SignUp() {
+export default function SignupMentor() {
 
   const onSubmit = (data) => console.log(data);
-    const {
-      register,
-      handleSubmit,
-      formState: { errors },
-      control,
-      watch
-    } = useForm({
-      mode: "onChange",
-    });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    control,
+    watch
+  } = useForm({
+    mode: "onChange",
+  });
 
   const password = useRef({});
   password.current = watch("password", "");
+  const [isChecked, setIsChecked] = useState(false);
 
-  
+
 
   function Term() {
     return (
@@ -62,7 +64,7 @@ export default function SignUp() {
       <Header />
       <ThemeProvider theme={defaultTheme}>
         <Container component="main" maxWidth="sm" >
-          <Card elevation={3} style={{ paddingLeft: "5%", paddingRight: "5%", margin: "3%" }}>
+          <Card elevation={3} style={{ paddingLeft: "5%", paddingRight: "5%", margin: "3%", paddingBottom: "4%" }}>
             <CssBaseline />
             <Box
               sx={{
@@ -72,21 +74,21 @@ export default function SignUp() {
                 alignItems: 'center',
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-                <LockOutlinedIcon />
-              </Avatar>
-              <Typography component="h1" variant="h5">
+              <Typography component="h1" variant="h2">
                 Sign up
+              </Typography>
+              <Typography component="h6" variant="h6">
+                For Learner
               </Typography>
               <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                    {...register("firstName", {
-            required: "First name is required",
-          })}
-          error={Boolean(errors.fullName)}
-          helperText={errors.fullName?.message}
+                      {...register("firstName", {
+                        required: "FirstName is required",
+                      })}
+                      error={Boolean(errors.firstName)}
+                      helperText={errors.firstName?.message}
                       autoComplete="given-name"
                       name="firstName"
                       required
@@ -98,11 +100,11 @@ export default function SignUp() {
                   </Grid>
                   <Grid item xs={12} sm={6}>
                     <TextField
-                    {...register("lastName", {
-                      required: "Last name is required",
-                    })}
-                    error={Boolean(errors.fullName)}
-                    helperText={errors.fullName?.message}
+                      {...register("lastName", {
+                        required: "LastName is required",
+                      })}
+                      error={Boolean(errors.lastName)}
+                      helperText={errors.lastName?.message}
                       required
                       fullWidth
                       id="lastName"
@@ -113,15 +115,15 @@ export default function SignUp() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                     {...register("collegeEmail", {
-                                          required: "College email is required",
-                                          pattern: {
-                                            value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                                            message: "Invalid email address",
-                                          },
-                                        })}
-                                        error={Boolean(errors.collegeEmail)}
-                                        helperText={errors.collegeEmail?.message}
+                      {...register("email", {
+                        required: "Email is required",
+                        pattern: {
+                          value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
+                          message: "Invalid email address",
+                        },
+                      })}
+                      error={Boolean(errors.email)}
+                      helperText={errors.email?.message}
                       required
                       fullWidth
                       id="email"
@@ -132,20 +134,20 @@ export default function SignUp() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                    {...register("password", {
-                                        required: "Password is required",
-                                        minLength: {
-                                          value: 8,
-                                          message: "Password must have at least 8 characters",
-                                        },
-                                        pattern: {
-                                          value: /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/,
-                                          message:
-                                            "Password must contain minimum eight characters, at least one letter and one number",
-                                        },
-                                      })}
-                                      error={Boolean(errors.password)}
-                                      helperText={errors.password?.message}
+                      {...register("password", {
+                        required: "Password is required",
+                        minLength: {
+                          value: 8,
+                          message: "Password must have at least 8 characters",
+                        },
+                        pattern: {
+                          value: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+                          message:
+                            "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+                        },
+                      })}
+                      error={Boolean(errors.password)}
+                      helperText={errors.password?.message}
                       required
                       fullWidth
                       name="password"
@@ -157,25 +159,32 @@ export default function SignUp() {
                   </Grid>
                   <Grid item xs={12}>
                     <TextField
-                    {...register("confirmPassword", {
-                                        required: "Confirm Password is required",
-                                        validate: (value) =>
-                                          value === password.current || "The passwords do not match",
-                                      })}
-                                      error={Boolean(errors.confirmPassword)}
-                                                      helperText={errors.confirmPassword?.message}
+                      {...register("confirmPassword", {
+                        required: "Confirm Password is required",
+                        validate: (value) =>
+                          value === password.current || "The passwords do not match",
+                      })}
+                      error={Boolean(errors.confirmPassword)}
+                      helperText={errors.confirmPassword?.message}
                       required
                       fullWidth
-                      name="password"
+                      name="confirmPassword"
                       label="Confirm Password"
                       type="password"
-                      id="Cnf-password"
+                      id="confirmPassword"
                       autoComplete="new-password"
                     />
                   </Grid>
+
                   <Grid item xs={1}>
                     <FormControlLabel
-                      control={<Checkbox value="allowExtraEmails" color="primary" />}
+                      control={
+                        <Checkbox
+                          value="allowExtraEmails"
+                          color="primary"
+                          onChange={(e) => setIsChecked(e.target.checked)}
+                        />
+                      }
                     />
                   </Grid>
                   <Grid item xs={11}>
@@ -188,6 +197,7 @@ export default function SignUp() {
                     variant="contained"
                     sx={{ mt: 3, mb: 2 }}
                     onClick={handleSubmit(onSubmit)}
+                    disabled={!isChecked}
                   >
                     Sign Up
                   </Button>
@@ -198,14 +208,14 @@ export default function SignUp() {
                       </Link>
                     </Grid>
                   </Grid>
-                  <Stack direction="row" spacing={2} style={{marginLeft:"25%" ,marginTop:"2%"}}>
-      <Button variant="outlined" startIcon={<FcGoogle/>} style={{backgroundColor:"pink"}}>
-        Google
-      </Button>
-      <Button variant="outlined" startIcon={<FaFacebook/>} style={{backgroundColor:"pink"}}>
-        Facebook
-      </Button>
-    </Stack>
+                  <Stack direction="row" spacing={2} style={{ marginLeft: "25%", marginTop: "2%" }}>
+                    <Button variant="outlined" startIcon={<FcGoogle />} style={{ backgroundColor: "pink" }}>
+                      Google
+                    </Button>
+                    <Button variant="outlined" startIcon={<FaFacebook />} style={{ backgroundColor: "pink" }}>
+                      Facebook
+                    </Button>
+                  </Stack>
                 </Grid>
               </Box>
             </Box>

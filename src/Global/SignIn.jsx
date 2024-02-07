@@ -1,5 +1,4 @@
 import * as React from "react";
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
@@ -19,24 +18,6 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant="body2"
-      color="text.secondary"
-      align="center"
-      {...props}
-    >
-      {"Copyright © "}
-      <Link color="inherit" href="https://mui.com/">
-        Your Website
-      </Link>{" "}
-      {new Date().getFullYear()}
-      {"."}
-    </Typography>
-  );
-}
 
 const defaultTheme = createTheme();
 
@@ -79,9 +60,6 @@ export default function SignIn() {
                 alignItems: "center",
               }}
             >
-              <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-                <LockOutlinedIcon />
-              </Avatar>
               {isForgotPassword ? (
                 <>
                   <Typography component="h1" variant="h5">
@@ -131,7 +109,7 @@ export default function SignIn() {
                 </>
               ) : (
                 <>
-                  <Typography component="h1" variant="h5">
+                  <Typography component="h1" variant="h4">
                     Sign in
                   </Typography>
                   <Box
