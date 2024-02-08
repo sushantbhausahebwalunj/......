@@ -19,6 +19,9 @@ import { FcGoogle } from "react-icons/fc";
 import { useForm, Controller } from "react-hook-form";
 import { useState } from "react";
 
+
+
+
 const defaultTheme = createTheme();
 
 export default function SignIn() {
@@ -80,7 +83,7 @@ export default function SignIn() {
                       id="email"
                       label="Email Address"
                       name="email"
-                      autoComplete="email"
+                      
                       autoFocus
                       error={Boolean(errors.email)}
                       helperText={errors.email?.message}
@@ -132,7 +135,7 @@ export default function SignIn() {
                       id="email"
                       label="Email Address"
                       name="email"
-                      autoComplete="email"
+                     
                       autoFocus
                       error={Boolean(errors.email)}
                       helperText={errors.email?.message}
@@ -158,7 +161,7 @@ export default function SignIn() {
                       label="Password"
                       type="password"
                       id="password"
-                      autoComplete="current-password"
+                      
                       error={Boolean(errors.password)}
                       helperText={errors.password?.message}
                     />
@@ -189,6 +192,7 @@ export default function SignIn() {
                         <Link href="#" variant="body2">
                           {"Don't have an account? Sign Up"}
                         </Link>
+                        
                       </Grid>
                       <Grid item xs={12} sm={6} marginTop={2}>
                         <Link href="https://www.google.com" target="_blank">

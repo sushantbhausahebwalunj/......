@@ -1,11 +1,11 @@
-import SignupStud from "./component/Learner/SignupLearner"
+import SignupLearner from "./component/Learner/SignupLearner"
 import SignUpCW from  './component/ContentWriter/SignUpCW'
 import SignUp_Common from  './Global/Signup_Common'
 import SignIn from "./Global/SignIn"
-import Signup_Common from "./Global/Signup_Common"
 import LandingPageCW from "./component/ContentWriter/LandingPageCW"
 import Navbar from "./Global/NavBar"
 import AppRoutes from "./AppRoutes"
+import LandingPageLearner from "./component/Learner/LandingPageLearner"
 
 
 function App() {
@@ -14,12 +14,14 @@ function App() {
     <div>
     {/* <SignupLearner/> */}
     {/* <SignupCW/> */}
+    {/* <SignUpCW/> */}
     {/* <ApprovalCW/> */}
     {/* <SignIn/> */}
     {/* <Signup_Common/> */}
     {/* <LandingPageCW/> */}
     {/* <Navbar/> */}
     <AppRoutes/>
+    {/* <LandingPageLearner/> */}
     </div>
   )
 }

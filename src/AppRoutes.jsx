@@ -6,6 +6,7 @@ import SignupLearner from "./component/Learner/SignupLearner";
 import ApprovalCW from "./component/ContentWriter/ApprovalCW";
 import SignupMentor from "./component/Mentor/SignupMentor";
 import SignIn from "./Global/SignIn";
+import LandingPageCW from "./component/ContentWriter/LandingPageCW";
 
 const AppRoutes = () => {
   return (
@@ -16,7 +17,8 @@ const AppRoutes = () => {
     <Route path="/signup/learner" element={<SignupLearner/>}/>
     <Route path="/signup/contentwriter" element={<SignupCW/>}/>
     <Route path="/signup/mentor" element={<SignupMentor/>}/>
-    <Route path="signin" element={<SignIn/>}/>
+    <Route path="/login" element={<SignIn/>}/>
+    <Route path="/articles" element={<LandingPageCW/>}/>
     <Route path="*" element={<h1>No Such Page</h1>} />
   </Routes>
 </BrowserRouter>
