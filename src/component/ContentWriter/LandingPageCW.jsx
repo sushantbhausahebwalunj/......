@@ -54,7 +54,7 @@ function LandingPageCW() {
         </Grid>
         <Grid item xs={11} style={{border:"1px solid black"}}>
         <Box display="flex" justifyContent="flex-end">
-  <Button aria-controls="filter-menu" aria-haspopup="true" onClick={handleFilterClick} style={{border: '1px solid'}}>
+  <Button aria-controls="filter-menu" aria-haspopup="true" onClick={handleFilterClick} style={{border: '1px solid' ,backgroundColor:"#5F0F40" , color: "#ffffff"}}>
     Filter
   </Button>
   <Menu
@@ -68,7 +68,7 @@ function LandingPageCW() {
     <MenuItem onClick={handleFilterClose}>Language settings</MenuItem>
     <MenuItem onClick={handleFilterClose}>Log out</MenuItem>
   </Menu>
-  <Button aria-controls="sort-menu" aria-haspopup="true" onClick={handleSortClick} style={{border: '1px solid'}}>
+  <Button aria-controls="sort-menu" aria-haspopup="true" onClick={handleSortClick} style={{border: '1px solid'  ,backgroundColor:"#5F0F40" , color: "#ffffff"}}>
     Sort
   </Button>
   <Menu
