@@ -4,8 +4,10 @@ import SignUp_Common from  './Global/Signup_Common'
 import SignIn from "./Global/SignIn"
 import LandingPageCW from "./component/ContentWriter/LandingPageCW"
 import Navbar from "./Global/NavBar"
+import './App.css'
 import AppRoutes from "./AppRoutes"
 import LandingPageLearner from "./component/Learner/LandingPageLearner"
+
 
 
 function App() {

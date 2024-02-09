@@ -8,7 +8,6 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -16,8 +15,9 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { useForm, Controller } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
 
 
 
@@ -44,6 +44,13 @@ export default function SignIn() {
     setIsForgotPassword(false);
   };
 
+  const navigate = useNavigate();
+
+  const handleSignUp = () => {
+    navigate('/signup');
+  };
+
+
   return (
     <div>
       <Header />
@@ -51,7 +58,7 @@ export default function SignIn() {
         <Container
           component="main"
           maxWidth="xs"
-          style={{ marginTop: "7%", paddingTop: "1%" }}
+          style={{ marginTop: "3.5%", paddingTop: "1%" }}
         >
           <Card elevation={3} style={{ padding: "5%", paddingTop: "0%" }}>
             <CssBaseline />
@@ -189,11 +196,14 @@ export default function SignIn() {
                         </Link>
                       </Grid>
                       <Grid item xs={7}>
-                        <Link href="#" variant="body2">
-                          {"Don't have an account? Sign Up"}
-                        </Link>
-                        
-                      </Grid>
+      <Link
+        href="#"
+        variant="body2"
+        onClick={handleSignUp}
+      >
+        {"Don't have an account? Sign Up"}
+      </Link>
+    </Grid>
                       <Grid item xs={12} sm={6} marginTop={2}>
                         <Link href="https://www.google.com" target="_blank">
                           <Button
@@ -224,5 +234,6 @@ export default function SignIn() {
       </ThemeProvider>
       <Footer />
     </div>
+    
   );
 }

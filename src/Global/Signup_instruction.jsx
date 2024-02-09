@@ -5,17 +5,17 @@ const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="down" ref={ref} {...props} />;
 });
 
-export default function SignupInstruction({ open, handleClose, selectedOption }) {
+export default function SignupInstruction({ open, handleClose, handleAgree, selectedOption }) {
   let dialogTitle = '';
   switch (selectedOption) {
     case 'option1':
-      dialogTitle = 'Learner Instruction';
+      dialogTitle = 'Instruction';
       break;
     case 'option2':
-      dialogTitle = 'Content Writer Instruction';
+      dialogTitle = 'Instruction';
       break;
     case 'option3':
-      dialogTitle = 'Mentor Instruction';
+      dialogTitle = 'Instruction';
       break;
     default:
       dialogTitle = 'Confirmation';
@@ -52,7 +52,7 @@ export default function SignupInstruction({ open, handleClose, selectedOption })
       </DialogContent>
       <DialogActions>
         <Button variant="contained" color="secondary" onClick={handleClose}>Disagree</Button>
-        <Button variant="contained" color="primary" onClick={handleClose}>Agree</Button>
+        <Button variant="contained" color="primary" onClick={handleAgree}>Agree</Button>
       </DialogActions>
     </Dialog>
   );
