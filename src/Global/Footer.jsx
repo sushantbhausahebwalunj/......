@@ -33,10 +33,12 @@ const defaultTheme = createTheme();
 
 export default function StickyFooter() {
   return (
+
+<Box sx={{ mb: '60px' }}>
+
     <ThemeProvider theme={defaultTheme}>
       <Box
         sx={{
-          
           position: 'fixed',
           bottom: 0, 
           width: '100%'
@@ -62,5 +64,6 @@ export default function StickyFooter() {
         </Box>
       </Box>
     </ThemeProvider>
+    </Box>
   );
 }

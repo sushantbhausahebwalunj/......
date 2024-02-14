@@ -8,7 +8,6 @@ import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Card from "@mui/material/Card";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
@@ -190,25 +189,17 @@ export default function SignIn() {
                           {"Don't have an account? Sign Up"}
                         </Link>
                       </Grid>
-                      <Grid item xs={12} sm={6} marginTop={2}>
-                        <Link href="https://www.google.com" target="_blank">
-                          <Button
-                            variant="outlined"
-                            startIcon={<FcGoogle size={30} />}
-                          >
+                      <Grid container spacing={2} justifyContent="center" style={{ marginTop: "2%" }}>
+                        <Grid item xs={12} sm={6}>
+                          <Button variant="outlined" startIcon={<FcGoogle />} style={{ backgroundColor: "", width: '100%' }}>
                             Google
                           </Button>
-                        </Link>
-                      </Grid>
-                      <Grid item xs={12} sm={6} marginTop={2}>
-                        <Link href="https://www.facebook.com" target="_blank">
-                          <Button
-                            variant="outlined"
-                            startIcon={<FaFacebook size={30} />}
-                          >
-                            FaceBook
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                          <Button variant="outlined" startIcon={<FaFacebook />} style={{ backgroundColor: "", width: '100%' }}>
+                            Facebook
                           </Button>
-                        </Link>
+                        </Grid>
                       </Grid>
                     </Grid>
                   </Box>
