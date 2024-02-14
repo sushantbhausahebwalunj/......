@@ -1,8 +1,13 @@
 import React from 'react'
+import NavBar from '../../Global/NavBar'
+import Tabs from '../../Global/Tabs'
 
 function LandingPageLearner() {
   return (
-    <div>LandingPageLearner</div>
+    <div>
+      <NavBar/>
+      <Tabs/> 
+    </div>
   )
 }
 

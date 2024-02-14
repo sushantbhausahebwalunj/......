@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Header from "../Global/Header";
 import Footer from "../Global/Footer";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
+import { useNavigate } from 'react-router-dom';
 import {
   Typography,
   RadioGroup,
@@ -10,10 +11,46 @@ import {
   Radio,
   Grid,
   Button,
+  Box
 } from "@mui/material";
+import SignupInstruction from './Signup_instruction';
 
 function Signup_Common() {
+  const navigate = useNavigate();
+  const [selectedOption, setSelectedOption] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
+
+  const handleClickOpen = () => {
+    if (selectedOption) {
+      setOpen(true);
+    } else {
+      alert('Please select an option.');
+    }
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleAgree = () => {
+    switch (selectedOption) {
+      case 'option1':
+        navigate('/signup/learner');
+        break;
+      case 'option2':
+        navigate('/signup/contentwriter');
+        break;
+      default:
+        alert('Please select an option.');
+    }
+  };
+
   return (
+    
     <div>
       <Header />
 
@@ -47,7 +84,7 @@ function Signup_Common() {
             </Grid>
 
             <Grid item xs={12} sm={12}>
-              <RadioGroup style={{ marginLeft: "15%" }}>
+              <RadioGroup style={{ marginLeft: "15%" }} onChange={handleOptionChange}>
                 <FormControlLabel
                   value="option1"
                   control={<Radio />}
@@ -76,15 +113,30 @@ function Signup_Common() {
               justifyContent="center"
               alignItems="center"
             >
-              <Button variant="contained">Create Account</Button>
+              <Button variant="contained" onClick={handleClickOpen}>Create Account</Button>
             </Grid>
           </Grid>
         </Paper>
       </Container>
 
+      <SignupInstruction
+      open={open}
+      handleClose={handleClose}
+      selectedOption={selectedOption}
+      handleAgree={handleAgree} // pass the handleAgree function
+    />
+
       <Footer />
     </div>
+   
   );
 }
 
 export default Signup_Common;
+
+
+
+
+
+
+

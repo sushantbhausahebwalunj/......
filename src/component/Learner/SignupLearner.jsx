@@ -155,7 +155,7 @@ export default function SignupMentor() {
                       label="Password"
                       type="password"
                       id="password"
-                      autoComplete="new-password"
+                      
                     />
                   </Grid>
                   <Grid item xs={12}>
@@ -173,7 +173,7 @@ export default function SignupMentor() {
                       label="Confirm Password"
                       type="password"
                       id="confirmPassword"
-                      autoComplete="new-password"
+                      
                     />
                   </Grid>
 

@@ -15,8 +15,12 @@ import Header from "./Header";
 import Footer from "./Footer";
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { useForm, Controller } from "react-hook-form";
+import { useForm} from "react-hook-form";
 import { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+
+
+
 
 const defaultTheme = createTheme();
 
@@ -40,6 +44,13 @@ export default function SignIn() {
     setIsForgotPassword(false);
   };
 
+  const navigate = useNavigate();
+
+  const handleSignUp = () => {
+    navigate('/signup');
+  };
+
+
   return (
     <div>
       <Header />
@@ -47,7 +58,7 @@ export default function SignIn() {
         <Container
           component="main"
           maxWidth="xs"
-          style={{ marginTop: "7%", paddingTop: "1%" }}
+          style={{ marginTop: "3.5%", paddingTop: "1%" }}
         >
           <Card elevation={3} style={{ padding: "5%", paddingTop: "0%" }}>
             <CssBaseline />
@@ -79,7 +90,7 @@ export default function SignIn() {
                       id="email"
                       label="Email Address"
                       name="email"
-                      autoComplete="email"
+                      
                       autoFocus
                       error={Boolean(errors.email)}
                       helperText={errors.email?.message}
@@ -131,7 +142,7 @@ export default function SignIn() {
                       id="email"
                       label="Email Address"
                       name="email"
-                      autoComplete="email"
+                     
                       autoFocus
                       error={Boolean(errors.email)}
                       helperText={errors.email?.message}
@@ -157,7 +168,7 @@ export default function SignIn() {
                       label="Password"
                       type="password"
                       id="password"
-                      autoComplete="current-password"
+                      
                       error={Boolean(errors.password)}
                       helperText={errors.password?.message}
                     />
@@ -211,5 +222,6 @@ export default function SignIn() {
       </ThemeProvider>
       <Footer />
     </div>
+    
   );
 }
