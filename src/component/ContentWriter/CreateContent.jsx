@@ -13,6 +13,17 @@ function CreateContent() {
     setsubDomain(event.target.value);
   };
 
+
+  const [domain, setDomain] = React.useState('');
+  const [subDomain, setsubDomain] = React.useState('');
+
+  const handleChangeDomain = (event) => {
+    setDomain(event.target.value);
+  };
+  const handleChangeSubDomain = (event) => {
+    setsubDomain(event.target.value);
+  };
+
   return (
     <div>
         <Paper elevation={5} style={{ maxWidth: '50%', margin: 'auto', marginTop: '5%', padding: '2%' }}>

@@ -190,14 +190,18 @@ export default function SignupMentor() {
                       </Link>
                     </Grid>
                   </Grid>
-                  <Stack direction="row" spacing={2} style={{ marginLeft: "25%", marginTop: "2%" }}>
-                    <Button variant="outlined" startIcon={<FcGoogle />} style={{ backgroundColor: "pink" }}>
-                      Google
-                    </Button>
-                    <Button variant="outlined" startIcon={<FaFacebook />} style={{ backgroundColor: "pink" }}>
-                      Facebook
-                    </Button>
-                  </Stack>
+                  <Grid container spacing={2} justifyContent="center" style={{ marginTop: "2%" }}>
+                    <Grid item xs={12} sm={6}>
+                      <Button variant="outlined" startIcon={<FcGoogle />} style={{ backgroundColor: "", width: '100%' }}>
+                        Google
+                      </Button>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                      <Button variant="outlined" startIcon={<FaFacebook />} style={{ backgroundColor: "", width: '100%' }}>
+                        Facebook
+                      </Button>
+                    </Grid>
+                  </Grid>
                 </Grid>
               </Box>
             </Box>

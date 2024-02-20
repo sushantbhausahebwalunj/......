@@ -53,8 +53,9 @@ function Signup_Common() {
     
     <div>
       <Header />
+
       <Container style={{ display: "flex", justifyContent: "center" }}>
-        <Paper elevation={3} style={{ display: "flex", width: "50%", padding:"3%", marginTop:"3.5%" }}>
+        <Paper elevation={3} style={{ display: "flex", width: "60%", padding: "3%", marginTop: "4%" }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
               <Typography
@@ -65,8 +66,8 @@ function Signup_Common() {
                   padding: "10px",
                 }}
               >
-                {/* Sign Up as */}
-               How do you want to use Abhyaskar
+                Sign Up as
+                {/* How do you want to use Abhyaskar */}
               </Typography>
             </Grid>
             <Grid item xs={12} sm={12}>
