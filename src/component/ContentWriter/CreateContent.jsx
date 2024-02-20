@@ -1,5 +1,4 @@
 import React from 'react'
-import Header from '../../Global/Header'
 import { Paper, Typography, Grid, Select, Box, InputLabel, MenuItem, FormControl, Button, TextField } from '@mui/material'
 
 function CreateContent() {
@@ -16,8 +15,6 @@ function CreateContent() {
 
   return (
     <div>
-      <Header />
-      <div>
         <Paper elevation={5} style={{ maxWidth: '50%', margin: 'auto', marginTop: '5%', padding: '2%' }}>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -83,7 +80,6 @@ function CreateContent() {
             </Grid>
           </Grid>
         </Paper>
-      </div>
     </div>
   )
 }

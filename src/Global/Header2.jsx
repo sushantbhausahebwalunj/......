@@ -16,7 +16,7 @@ function Header2() {
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
 
     return (
-        <AppBar position="static">
+        <AppBar position="static" sx={{ backgroundColor: "#141E46" }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
                     <Box display="flex" flexDirection={{ xs: 'column', md: 'row' }} alignItems="center" justifyContent="space-between" width="100%">
