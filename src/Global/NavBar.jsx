@@ -117,7 +117,7 @@ function ResponsiveAppBar() {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            <Link to="/courses">
+            <Link to="/courses" style={{ textDecoration: 'none' }}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -125,7 +125,7 @@ function ResponsiveAppBar() {
                 Courses
               </Button>
             </Link>
-            <Link to="/tutorials">
+            <Link to="/tutorials" style={{ textDecoration: 'none' }}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -133,7 +133,7 @@ function ResponsiveAppBar() {
                 Tutorials
               </Button>
             </Link>
-            <Link to="/practice">
+            <Link to="/practice" style={{ textDecoration: 'none' }}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -141,7 +141,7 @@ function ResponsiveAppBar() {
                 Practice
               </Button>
             </Link>
-            <Link to="/pathway">
+            <Link to="/pathway" style={{ textDecoration: 'none' }}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -149,7 +149,7 @@ function ResponsiveAppBar() {
                 Pathway
               </Button>
             </Link>
-            <Link to="/articles">
+            <Link to="/articles" style={{ textDecoration: 'none' }} >
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -190,7 +190,7 @@ function ResponsiveAppBar() {
           </Box> */}
 
           <Box sx={{ display: "flex" }}>
-            <Link to="/login">
+            <Link to="/login" style={{ textDecoration: 'none' }}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
@@ -198,7 +198,7 @@ function ResponsiveAppBar() {
                 Login
               </Button>
             </Link>
-            <Link to="/signup">
+            <Link to="/signup" style={{ textDecoration: 'none' }}>
               <Button
                 onClick={handleCloseNavMenu}
                 sx={{ my: 2, color: "white", display: "block" }}
