@@ -1,9 +1,8 @@
-import React, { useState } from "react";
-import Header from "../Global/Header";
-import Footer from "../Global/Footer";
+import React from "react";
+import Header from "./Header";
+import Footer from "./Footer";
 import Paper from "@mui/material/Paper";
 import Container from "@mui/material/Container";
-import { useNavigate } from 'react-router-dom';
 import {
   Typography,
   RadioGroup,
@@ -11,63 +10,30 @@ import {
   Radio,
   Grid,
   Button,
-  Box
 } from "@mui/material";
-import SignupInstruction from './Signup_instruction';
+import useMediaQuery from '@mui/material/useMediaQuery';
+import { useTheme } from '@mui/material/styles';
 
 function Signup_Common() {
-  const navigate = useNavigate();
-  const [selectedOption, setSelectedOption] = useState('');
-  const [open, setOpen] = useState(false);
-
-  const handleOptionChange = (event) => {
-    setSelectedOption(event.target.value);
-  };
-
-  const handleClickOpen = () => {
-    if (selectedOption) {
-      setOpen(true);
-    } else {
-      alert('Please select an option.');
-    }
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const handleAgree = () => {
-    switch (selectedOption) {
-      case 'option1':
-        navigate('/signup/learner');
-        break;
-      case 'option2':
-        navigate('/signup/contentwriter');
-        break;
-      default:
-        alert('Please select an option.');
-    }
-  };
+  const theme = useTheme();
+  const matches = useMediaQuery(theme.breakpoints.up('sm'));
 
   return (
-    
     <div>
       <Header />
-
       <Container style={{ display: "flex", justifyContent: "center" }}>
-        <Paper elevation={3} style={{ display: "flex", width: "60%", padding: "3%", marginTop: "4%" }}>
+        <Paper elevation={3} style={{ display: "flex", width: matches ? '50%' : '100%', padding:"3%", marginTop:"4%" }}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={12}>
               <Typography
-                variant="h4"
+                variant="h5"
                 style={{
                   display: "flex",
                   justifyContent: "center",
                   padding: "10px",
                 }}
               >
-                Sign Up as
-                {/* How do you want to use Abhyaskar */}
+                How do you want to use Abyaskar?
               </Typography>
             </Grid>
             <Grid item xs={12} sm={12}>
@@ -79,28 +45,28 @@ function Signup_Common() {
                   padding: "10px",
                 }}
               >
-                This will help to personalize your experience
+                This will help to personalize the experience
               </Typography>
             </Grid>
 
             <Grid item xs={12} sm={12}>
-              <RadioGroup style={{ marginLeft: "15%" }} onChange={handleOptionChange}>
+              <RadioGroup style={{ marginLeft: "15%" }}>
                 <FormControlLabel
                   value="option1"
                   control={<Radio />}
-                  label="Learner"
+                  label="Continue as Student/Developer"
                   style={{ margin: "10px 0" }}
                 />
                 <FormControlLabel
                   value="option2"
                   control={<Radio />}
-                  label="Content Writer"
+                  label="Continue as a Content Writer"
                   style={{ margin: "10px 0" }}
                 />
                 <FormControlLabel
                   value="option3"
                   control={<Radio />}
-                  label="Mentor"
+                  label="Continue as Mentor"
                   style={{ margin: "10px 0" }}
                 />
               </RadioGroup>
@@ -113,30 +79,15 @@ function Signup_Common() {
               justifyContent="center"
               alignItems="center"
             >
-              <Button variant="contained" onClick={handleClickOpen}>Create Account</Button>
+              <Button variant="contained">Create Account</Button>
             </Grid>
           </Grid>
         </Paper>
       </Container>
 
-      <SignupInstruction
-      open={open}
-      handleClose={handleClose}
-      selectedOption={selectedOption}
-      handleAgree={handleAgree} // pass the handleAgree function
-    />
-
-      <Footer />
+     <Footer />
     </div>
-   
   );
 }
 
 export default Signup_Common;
-
-
-
-
-
-
-

@@ -210,6 +210,5 @@ export default function SignupMentor() {
       </ThemeProvider>
       <Footer />
     </div>
-
   );
 }

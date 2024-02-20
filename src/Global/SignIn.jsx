@@ -17,7 +17,6 @@ import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
 import { useForm} from "react-hook-form";
 import { useState } from "react";
-import { useNavigate } from 'react-router-dom';
 
 
 
@@ -44,12 +43,7 @@ export default function SignIn() {
     setIsForgotPassword(false);
   };
 
-  const navigate = useNavigate();
-
-  const handleSignUp = () => {
-    navigate('/signup');
-  };
-
+ 
 
   return (
     <div>
