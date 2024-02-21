@@ -13,6 +13,8 @@ import ContentWriterDashboard from "./pages/ContentWriterDashboard";
 import CreateContent from "./component/ContentWriter/CreateContent";
 import MentorDashboard from "./pages/MentorDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import WriteContent from "./component/ContentWriter/WriteContent";
+import Feedback from "./Global/Feedback"
 
 const AppRoutes = () => {
   return (
@@ -33,19 +35,21 @@ const AppRoutes = () => {
     <Route path="/learner" element={<LearnerDashboard />}>
       <Route index element={<div>Welcome to Learner Dashboard</div>} />
       <Route path="content-learner" element={<ContentPageLearner />}/>
+      
     </Route>
 
     <Route path="/contentwriter" element={<ContentWriterDashboard/>}>
       <Route index element={<div>Welcome to Content Writer Dashboard</div>} />
       <Route path="landing-cw" element={<LandingPageCW/>}/>
-      <Route path="create-content" element={<CreateContent/>}/>
+      <Route path="create-content" element={<CreateContent/> }/>
+        <Route path="write-content" element={<WriteContent/>}/>
     </Route>
 
     <Route path="/mentor" element={<MentorDashboard/>}>
       <Route index element={<div>Welcome to Mentor Dashboard</div>} />
     </Route>
 
-
+    <Route path="/feedback" element={<Feedback/>}/>
 
     <Route path="*" element={<h1>No Such Page</h1>}/>
   </Routes>
