@@ -1,10 +1,19 @@
-import React from 'react'
-import { Paper, Typography, Grid, Select, Box, InputLabel, MenuItem, FormControl, Button, TextField } from '@mui/material'
+import React,{useState} from 'react'
+import { useNavigate } from 'react-router-dom';
+import { Paper, Typography, Grid, Select, Box, InputLabel, MenuItem, FormControl, Button, TextField, Dialog, DialogTitle } from '@mui/material'
 
 function CreateContent() {
 
   const [domain, setDomain] = React.useState('');
   const [subDomain, setsubDomain] = React.useState('');
+  const [title, setTitle] = useState('');
+  const [open, setOpen] = useState(false);
+
+  const navigate = useNavigate();
+
+  const handleNext = () => {
+  navigate('/contentwriter/write-content', { state: { domain, subDomain, title } });
+};
 
   const handleChangeDomain = (event) => {
     setDomain(event.target.value);
@@ -12,6 +21,19 @@ function CreateContent() {
   const handleChangeSubDomain = (event) => {
     setsubDomain(event.target.value);
   };
+
+  const handleTitleChange = (event) => {
+    setTitle(event.target.value);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <div>
@@ -34,9 +56,9 @@ function CreateContent() {
                     onChange={handleChangeDomain}
                     size='small'
                   >
-                    <MenuItem value={10}>Technical</MenuItem>
-                    <MenuItem value={20}>Academics</MenuItem>
-                    <MenuItem value={30}>Finance</MenuItem>
+                    <MenuItem value="Technical">Technical</MenuItem>
+  <MenuItem value="Academics">Academics</MenuItem>
+  <MenuItem value="Finance">Finance</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
@@ -53,33 +75,46 @@ function CreateContent() {
                     onChange={handleChangeSubDomain}
                     size='small'
                   >
-                    <MenuItem value={10}>Ten</MenuItem>
-                    <MenuItem value={20}>Twenty</MenuItem>
-                    <MenuItem value={30}>Thirty</MenuItem>
+                     <MenuItem value="Java">Java</MenuItem>
+  <MenuItem value="PM">PM</MenuItem>
+  <MenuItem value="Account">Account</MenuItem>
                   </Select>
                 </FormControl>
               </Box>
             </Grid>
             <Grid item xs={12} container justifyContent="center">
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onClick={handleOpen}>
                 Select Template
               </Button>
             </Grid>
             <Grid item xs={12} container justifyContent="center">
-              <TextField label="Enter text" variant="outlined" size='small' fullWidth />
-            </Grid>
+      <TextField 
+        label="Enter Title" 
+        value={title} 
+        onChange={handleTitleChange} 
+        variant="outlined" 
+        size='small' 
+        fullWidth 
+      />
+    </Grid>
             <Grid item xs={12} sm={6} container justifyContent="center">
               <Button variant="contained" color="primary">
                 Cancel
               </Button>
             </Grid>
             <Grid item xs={12} sm={6} container justifyContent="center">
-              <Button variant="contained" color="secondary">
+              <Button variant="contained" color="secondary" onClick={handleNext}>
                 Next
               </Button>
             </Grid>
           </Grid>
         </Paper>
+
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Select a Template</DialogTitle>
+          {/* Add your template selection logic here */}
+        </Dialog>
+
     </div>
   )
 }

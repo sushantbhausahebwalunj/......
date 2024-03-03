@@ -13,6 +13,15 @@ import ContentWriterDashboard from "./pages/ContentWriterDashboard";
 import CreateContent from "./component/ContentWriter/CreateContent";
 import MentorDashboard from "./pages/MentorDashboard";
 import AdminDashboard from "./pages/AdminDashboard";
+import WriteContent from "./component/ContentWriter/WriteContent";
+import Feedback from "./Global/Feedback"
+import UserManagement from "../src/component/Admin/UserManagment"
+import ArticleManagement from "../src/component/Admin/ArticleManagement"
+import LandingPageMentor from "./component/Mentor/LandingPageMentor";
+import ProfilePageLearner from "./component/Learner/ProfilePageLearner";
+import ChangePassword from "./component/Learner/ChangePassword";
+import InviteProfile from "./component/Learner/InviteProfile";
+import EditProfile from "./component/Learner/EditProfile";
 
 const AppRoutes = () => {
   return (
@@ -28,24 +37,34 @@ const AppRoutes = () => {
 
     <Route path="/admin" element={<AdminDashboard/>}>
       <Route index element={<div>Welcome to Admin Dashboard</div>} />
+      <Route path="user-management" element={<UserManagement/>}/>
+      <Route path="article-management" element={<ArticleManagement/>}/>
     </Route>
     
     <Route path="/learner" element={<LearnerDashboard />}>
       <Route index element={<div>Welcome to Learner Dashboard</div>} />
       <Route path="content-learner" element={<ContentPageLearner />}/>
+      <Route path="profile" element={<ProfilePageLearner/>}/>
+      <Route path="profile/change-pass" element={<ChangePassword />} />
+      <Route path="profile/invite" element={<InviteProfile />} />
+      <Route path="profile/edit-profile" element={<EditProfile />} />
     </Route>
 
     <Route path="/contentwriter" element={<ContentWriterDashboard/>}>
       <Route index element={<div>Welcome to Content Writer Dashboard</div>} />
       <Route path="landing-cw" element={<LandingPageCW/>}/>
-      <Route path="create-content" element={<CreateContent/>}/>
+      <Route path="create-content" element={<CreateContent/> }/>
+        <Route path="write-content" element={<WriteContent/>}/>
     </Route>
 
     <Route path="/mentor" element={<MentorDashboard/>}>
       <Route index element={<div>Welcome to Mentor Dashboard</div>} />
+      <Route path="landing-mentor" element={<LandingPageMentor/>}/>
+
     </Route>
 
-
+    
+    <Route path="/feedback" element={<Feedback/>}/>
 
     <Route path="*" element={<h1>No Such Page</h1>}/>
   </Routes>

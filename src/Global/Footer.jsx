@@ -5,9 +5,10 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright() {
+
   return (
     <Typography variant="body2" color="text.secondary">
       {'Copyright © 2023 - '}
@@ -33,15 +34,21 @@ function Copyright() {
 const defaultTheme = createTheme();
 
 export default function StickyFooter() {
+
+  const theme = createTheme();
+
   return (
     <Box sx={{ pb: '60px' }}>
 
-      <ThemeProvider theme={defaultTheme}>
-        <Box sx={{ width: '100%', position: 'fixed', bottom: 0, mt: 2 }}>
-          <Box sx={{ pb: '60px' }}>
-            {/* ... main content of the page ... */}
-          </Box>
-          <CssBaseline />
+    <ThemeProvider theme={theme}>
+      <Box
+        sx={{
+          position: 'fixed',
+          bottom: 0, 
+          width: '100%'
+        }}
+      >
+        <CssBaseline />
 
           <Box
             component="footer"
@@ -64,3 +71,9 @@ export default function StickyFooter() {
     </Box>
   );
 }
+
+
+
+
+
+

@@ -1,14 +1,41 @@
 import React from "react";
 import { Container, Grid, Typography, TextField, Button, Link, Box } from "@mui/material";
 import { FaFacebook, FaLinkedin, FaTwitter } from "react-icons/fa";
+import { withStyles } from '@mui/styles';
 
 export default function Footer2() {
+
+  const CustomTextField = withStyles({
+    root: {
+      '& label.Mui-focused': {
+        color: 'white',
+      },
+      '& .MuiInput-underline:after': {
+        borderBottomColor: 'white',
+      },
+      '& .MuiOutlinedInput-root': {
+        '& fieldset': {
+          borderColor: 'white',
+        },
+        '&:hover fieldset': {
+          borderColor: 'white',
+        },
+        '&.Mui-focused fieldset': {
+          borderColor: 'white',
+        },
+      },
+      '& .MuiInputLabel-outlined': { // Add this rule
+        color: 'white',
+      },
+    },
+  })(TextField);
+
   return (
     <div>
-      <Box sx={{ width: '100%', position: 'fixed', bottom: 0, p: 0 }}>
-  <Container maxWidth="xl" style={{ backgroundColor: "#808080", color: "white", padding: "1rem", paddingLeft: 0 }}>
-      <Box sx={{ width: '100%', position: 'fixed', bottom: 0 }}>
-        <Container maxWidth="xl" style={{ backgroundColor: "#808080", color: "white", padding: "1rem" }}>
+      <Box sx={{ width: '100%'}}>
+  <Container maxWidth="xl" style={{ backgroundColor: "#141E46", color: "white", padding: "1rem", paddingLeft: 0 ,paddingRight:0}}>
+      <Box sx={{ width: '100%'}}>
+        <Container maxWidth="xl" style={{ backgroundColor: "#141E46", color: "white", padding: "1rem" }}>
           <Grid container spacing={3}>
             
             {/* Contact Information */}
@@ -59,7 +86,7 @@ export default function Footer2() {
             <Grid item xs={12} sm={6} md={3}>
               <Typography variant="h5">Newsletter</Typography>
               <form noValidate autoComplete="off">
-                <TextField id="newsletterEmail" label="Enter your email" variant="outlined" size="small" />
+              <CustomTextField id="newsletterEmail" label="Enter your email" variant="outlined" size="small" />
                 <Box>
                   <Button variant="contained" color="primary" type="submit" style={{ marginTop: "1rem" }}>
                     Subscribe
