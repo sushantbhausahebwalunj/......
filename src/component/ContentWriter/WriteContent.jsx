@@ -9,9 +9,9 @@ function WriteContent() {
 
   const [preview, setPreview] = useState(false);
   const [content, setContent] = useState('');
-  const [title, setTitle] = useState(location.state.title);
-  const [domain, setDomain] = useState(location.state.domain);
-  const [subdomain, setSubdomain] = useState(location.state.subDomain);
+  const [title, setTitle] = useState(location.state ? location.state.title : '');
+  const [domain, setDomain] = useState(location.state ? location.state.domain : '');
+  const [subdomain, setSubdomain] = useState(location.state ? location.state.subDomain : '');
 
   const handlePreview = () => {
     setPreview(!preview);

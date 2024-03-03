@@ -8,10 +8,11 @@ function MentorDashboard() {
   return (
     <div>
     <Header2/>
-    <div style={{ display: 'flex' }}>
+    {/* <div style={{ display: 'flex' }}>
         <SidebarCW/>
         <Outlet/>
-    </div>
+    </div> */}
+    <Outlet/>
     <Footer2/>
 </div>
   )

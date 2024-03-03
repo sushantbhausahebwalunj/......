@@ -1,12 +1,13 @@
 import React,{useState} from 'react'
 import { useNavigate } from 'react-router-dom';
-import { Paper, Typography, Grid, Select, Box, InputLabel, MenuItem, FormControl, Button, TextField } from '@mui/material'
+import { Paper, Typography, Grid, Select, Box, InputLabel, MenuItem, FormControl, Button, TextField, Dialog, DialogTitle } from '@mui/material'
 
 function CreateContent() {
 
   const [domain, setDomain] = React.useState('');
   const [subDomain, setsubDomain] = React.useState('');
   const [title, setTitle] = useState('');
+  const [open, setOpen] = useState(false);
 
   const navigate = useNavigate();
 
@@ -24,6 +25,15 @@ function CreateContent() {
   const handleTitleChange = (event) => {
     setTitle(event.target.value);
   };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
 
   return (
     <div>
@@ -73,7 +83,7 @@ function CreateContent() {
               </Box>
             </Grid>
             <Grid item xs={12} container justifyContent="center">
-              <Button variant="contained" color="primary">
+              <Button variant="contained" color="primary" onClick={handleOpen}>
                 Select Template
               </Button>
             </Grid>
@@ -99,6 +109,12 @@ function CreateContent() {
             </Grid>
           </Grid>
         </Paper>
+
+        <Dialog open={open} onClose={handleClose}>
+          <DialogTitle>Select a Template</DialogTitle>
+          {/* Add your template selection logic here */}
+        </Dialog>
+
     </div>
   )
 }
