@@ -1,10 +1,11 @@
-/* #root {
-  max-width: 1280px;
+ #root {
+  /* max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
+  text-align: center; */
+  background-color: #ECF2FF !important;
 }
-
+/*
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -42,6 +43,6 @@
 } */
 
 body {
-  background-color: #ECF2FF !important;
+  /* background-color: #ECF2FF !important; */
 }
 
