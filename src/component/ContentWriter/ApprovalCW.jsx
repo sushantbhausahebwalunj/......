@@ -14,7 +14,7 @@ function ApprovalCW() {
       <Header />
       <Container style={{ marginTop: "2%" }}>
         <Box display="flex" justifyContent="center">
-          <Card elevation={5} style={{ width: matches ? '50%' : '100%', marginTop: "5%", height: "50vh", padding: "5%", backgroundColor: "#FFE4D6" }}>
+          <Card elevation={5} style={{ width: matches ? '50%' : '100%', marginTop: "5%", height: "50vh", padding: "5%", backgroundColor: "#D2E0FB" }}>
             <CardContent>
               <Grid container direction="column">
                 <Grid item>

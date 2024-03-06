@@ -22,6 +22,8 @@ import ProfilePageLearner from "./component/Learner/ProfilePageLearner";
 import ChangePassword from "./component/Learner/ChangePassword";
 import InviteProfile from "./component/Learner/InviteProfile";
 import EditProfile from "./component/Learner/EditProfile";
+import ApprovalCW from "./component/ContentWriter/ApprovalCW";
+import FetchFeedback from "./component/Admin/FetchFeedback"
 
 const AppRoutes = () => {
   return (
@@ -31,6 +33,7 @@ const AppRoutes = () => {
     <Route path="/signup" element={<Signup_Common/>}/>
     <Route path="/signup/learner" element={<SignupLearner/>}/>
     <Route path="/signup/contentwriter" element={<SignupCW/>}/>
+    <Route path="/signup/contentwriter/approval" element={<ApprovalCW/>} />
     <Route path="/signup/mentor" element={<SignupMentor/>}/>
     <Route path="/login" element={<SignIn/>}/>
     <Route path="/articles" element={<Article/>}/>
@@ -39,6 +42,7 @@ const AppRoutes = () => {
       <Route index element={<div>Welcome to Admin Dashboard</div>} />
       <Route path="user-management" element={<UserManagement/>}/>
       <Route path="article-management" element={<ArticleManagement/>}/>
+      <Route path="feedback-management" element={<FetchFeedback/>}/>
     </Route>
     
     <Route path="/learner" element={<LearnerDashboard />}>

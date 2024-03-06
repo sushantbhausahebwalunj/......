@@ -1,6 +1,6 @@
 import React from 'react'
 import Header from '../Global/Header'
-import Sidebar from '../Global/SidebarCW'
+import Sidebar from '../Global/SidebarAdmin'
 import { Outlet } from 'react-router-dom'
 
 function AdminDashboard() {
