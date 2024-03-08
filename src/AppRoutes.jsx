@@ -24,6 +24,7 @@ import InviteProfile from "./component/Learner/InviteProfile";
 import EditProfile from "./component/Learner/EditProfile";
 import ApprovalCW from "./component/ContentWriter/ApprovalCW";
 import FetchFeedback from "./component/Admin/FetchFeedback"
+import ArticleContent from "./component/ContentWriter/ArticleContent";
 
 const AppRoutes = () => {
   return (
@@ -37,6 +38,8 @@ const AppRoutes = () => {
     <Route path="/signup/mentor" element={<SignupMentor/>}/>
     <Route path="/login" element={<SignIn/>}/>
     <Route path="/articles" element={<Article/>}/>
+    <Route path="/articles/:title" element={<ArticleContent />} />
+   
 
     <Route path="/admin" element={<AdminDashboard/>}>
       <Route index element={<div>Welcome to Admin Dashboard</div>} />

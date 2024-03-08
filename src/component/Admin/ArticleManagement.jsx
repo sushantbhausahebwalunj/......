@@ -117,7 +117,7 @@ const columns = [
   // const [showPopup, setShowPopup] = useState(false);
 
   const handleEdit = (row) => {
-      <EditQuesPopup/>
+    
     };
     
     const handleDelete = (row) => {

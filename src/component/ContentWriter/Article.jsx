@@ -2,13 +2,22 @@ import React, { useState } from 'react';
 import Header from '../../Global/Header';
 import {TextField, Box, InputAdornment, Grid, Card,CardContent, Typography,Menu, MenuItem, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
+import { useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
+import { Link } from 'react-router-dom';
 
 function Article() {
+
+    const navigate = useNavigate();
+
     const [filterAnchorEl, setFilterAnchorEl] = React.useState(null);
     const [sortAnchorEl, setSortAnchorEl] = React.useState(null);
     const [searchTerm, setSearchTerm] = useState('');
   
+    const handleCardClick = (card) => {
+      navigate(`/articles/${card.title}`);
+    };
+
     const handleFilterClick = (event) => {
       setFilterAnchorEl(event.currentTarget);
     };
@@ -26,12 +35,12 @@ function Article() {
     };
   
     const cards = [
-      { title: 'Artifical intelligence', rating: 5, writer: 'Vaishnavi'},
-      { title: 'Big data', rating: 4, writer: 'Aniket'},
+      { title: 'Artifical Intelligence', rating: 5, writer: 'Vaishnavi'},
+      { title: 'Big Data', rating: 5, writer: 'Aniket'},
       { title: 'IOT', rating: 5, writer: 'Priya'},
-      { title: 'Machine Learning', rating: 4, writer: 'Atul'},
-      { title: 'Computer graphics', rating: 5, writer: 'Adi'},
-      { title: 'Data structures', rating: 2, writer: 'Content Writer'},
+      { title: 'Machine Learning', rating: 5, writer: 'Atul'},
+      { title: 'Computer Graphics', rating: 5, writer: 'Adi'},
+      { title: 'Data Structures', rating: 2, writer: 'Content Writer'},
       { title: 'Cryptography', rating: 5, writer: 'Content Writer'},
       { title: 'Robotics', rating: 1, writer: 'Content Writer'},
     ];
@@ -102,7 +111,8 @@ function Article() {
               <Grid container spacing={5}>
                 {filteredCards.map((card, i) => (
                   <Grid item xs={12} sm={6} md={3} key={i}>
-                    <Card sx={{ margin: '5%'}}>
+                    
+                    <Card sx={{ margin: '5%'}} onClick={() => handleCardClick(card)} >
                       <Box display="flex" flexDirection="column" justifyContent="center" alignItems="center">
                         <CardContent>
                           <Typography variant="h5" component="div">{card.title}</Typography>
@@ -118,6 +128,7 @@ function Article() {
                         </CardContent>
                       </Box>
                     </Card>
+                    
                   </Grid>
                 ))}
               </Grid>
