@@ -1,14 +1,15 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright() {
+
   return (
-    <Typography variant="body2" color="text.secondary">
+    <Typography variant="body2" color="text.primary" sx={{ color: '#FFFFFF' }}>
       {'Copyright © 2023 - '}
       {new Date().getFullYear()}
       {'. '}
@@ -28,15 +29,17 @@ function Copyright() {
   );
 }
 
-// TODO remove, this demo shouldn't need to reset the theme.
-const defaultTheme = createTheme();
-
 export default function StickyFooter() {
+
+  const theme = createTheme();
+
   return (
-    <ThemeProvider theme={defaultTheme}>
+
+<Box sx={{ mb: '60px' }}>
+
+    <ThemeProvider theme={theme}>
       <Box
         sx={{
-          
           position: 'fixed',
           bottom: 0, 
           width: '100%'
@@ -50,11 +53,8 @@ export default function StickyFooter() {
             py: 1,
             px: 2,
             mt: 'auto',
-            backgroundColor: (theme) =>
-              theme.palette.mode === 'light'
-                ? theme.palette.grey[200]
-                : theme.palette.grey[800],
-          }}
+            backgroundColor: '#141E46'
+           }}
         >
           <Container maxWidth="md" style={{ display: 'flex', justifyContent: 'center' }}>
            <Copyright />
@@ -62,5 +62,12 @@ export default function StickyFooter() {
         </Box>
       </Box>
     </ThemeProvider>
+    </Box>
   );
 }
+
+
+
+
+
+

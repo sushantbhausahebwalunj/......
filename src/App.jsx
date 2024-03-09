@@ -1,12 +1,12 @@
-import SignupStud from "./component/Learner/SignupLearner"
+import './App.css'
+import AppRoutes from "./AppRoutes"
 
 function App() {
   
   return (
-    <>
-    <SignupStud/>
-    
-    </>
+    <div>
+    <AppRoutes/>
+    </div>
   )
 }
 
