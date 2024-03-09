@@ -105,7 +105,7 @@
 
 
 
-import * as React from 'react';
+import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -113,8 +113,8 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
-function TabWithMenu({ label, menuItems, selected, ...other }) {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+function TabWithMenu({ label, menuItems, selected, onMenuSelect, ...other }) {
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleMenuClick = (event) => {
     event.stopPropagation();
@@ -125,9 +125,14 @@ function TabWithMenu({ label, menuItems, selected, ...other }) {
     setAnchorEl(null);
   };
 
+  const handleMenuItemClick = (item) => {
+    onMenuSelect(item); // This function is provided by the parent component
+    handleMenuClose(); // Close the menu after selection
+  };
+
   return (
     <>
-      <Tab 
+      <Tab
         selected={selected}
         onClick={handleMenuClick}
         label={
@@ -137,9 +142,9 @@ function TabWithMenu({ label, menuItems, selected, ...other }) {
         }
         {...other}
         sx={{
-            padding: '1px 12px', // adjust padding here
-            fontSize: '0.775rem', // adjust font size here
-          }}
+          padding: '1px 12px',
+          fontSize: '0.775rem',
+        }}
       />
       <Menu
         anchorEl={anchorEl}
@@ -147,7 +152,7 @@ function TabWithMenu({ label, menuItems, selected, ...other }) {
         onClose={handleMenuClose}
       >
         {menuItems.map((item, index) => (
-          <MenuItem key={index} onClick={handleMenuClose}>
+          <MenuItem key={index} onClick={() => handleMenuItemClick(item)}>
             {item}
           </MenuItem>
         ))}
@@ -156,17 +161,11 @@ function TabWithMenu({ label, menuItems, selected, ...other }) {
   );
 }
 
-export default function ScrollableTabsButtonVisible() {
-
-  const [value, setValue] = React.useState(0);
-  const [currentSelection, setCurrentSelection] = React.useState('');
+function ScrollableTabsButtonVisible({ onMenuSelection }) {
+  const [value, setValue] = useState(0);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
-  };
-
-  const handleMenuSelection = (selection) => {
-    setCurrentSelection(selection);
   };
 
   return (
@@ -177,11 +176,11 @@ export default function ScrollableTabsButtonVisible() {
         width: '100%',
       }}
     >
-      <Tabs 
+      <Tabs
         value={value}
         onChange={handleChange}
         variant="scrollable"
-        scrollButtons   
+        scrollButtons
         aria-label="visible arrows tabs example"
         indicatorColor="primary"
         textColor="primary"
@@ -203,15 +202,16 @@ export default function ScrollableTabsButtonVisible() {
           },
         }}
       >
-        <TabWithMenu label="Web Development" menuItems={["React", "Javascript", "CSS"]} selected={value === 0}/>
-        <TabWithMenu label="Database Management" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 1} />
-        <TabWithMenu label="Networking" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 2} />
-        <TabWithMenu label="Cloud Computing" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 3} />
-        <TabWithMenu label="Artificial Intelligence(AI)" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 4} />
-        <TabWithMenu label="Item Six" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 5} />
-        <TabWithMenu label="Item Seven" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 6} />
-        <TabWithMenu label="Item Eight" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 7} />
+        <TabWithMenu label="Web Development" menuItems={["React", "Javascript", "CSS"]} selected={value === 0} onMenuSelect={onMenuSelection}/>
+        <TabWithMenu label="Database Management" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 1} onMenuSelect={onMenuSelection} />
+  <TabWithMenu label="Networking" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 2} onMenuSelect={onMenuSelection} />
+  <TabWithMenu label="Cloud Computing" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 3} onMenuSelect={onMenuSelection} />
+  <TabWithMenu label="Artificial Intelligence(AI)" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 4} onMenuSelect={onMenuSelection} />
+  <TabWithMenu label="Machine Learning(ML)" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 4} onMenuSelect={onMenuSelection} />
+  <TabWithMenu label="Data Science" menuItems={["Option 1", "Option 2", "Option 3"]} selected={value === 4} onMenuSelect={onMenuSelection} />
       </Tabs>
     </Box>
   );
 }
+
+export default ScrollableTabsButtonVisible;
