@@ -54,13 +54,14 @@ useEffect(() => {
       <Card>
         <CardContent>
         <Box display="flex" flexDirection="column" alignItems="center">
-                <Typography variant="h5">Total Views</Typography>
+                <Typography variant="h5">Average Rating</Typography>
                 <Typography variant="h6">{totalViews}</Typography>
               </Box>
         </CardContent>
       </Card>
     </Grid>
   </Grid>
+  
     </Container>
   )
 }

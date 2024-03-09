@@ -13,7 +13,7 @@ function LearnerDashboard() {
   return (
     <div>
       <Header2 />
-      <Tabs />
+      {location.pathname.startsWith('/learner/profile') ? <></> : <Tabs />}
       <div style={{ display: 'flex' }}>
       {location.pathname.startsWith('/learner/profile') ? <SidebarProfile /> : <SidebarContent />}
         <Outlet /> {/* This will render the child routes */}

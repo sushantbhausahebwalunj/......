@@ -46,3 +46,17 @@ body {
   /* background-color: #ECF2FF !important; */
 }
 
+.sidebar-container {
+  width: 250px;
+}
+
+/* Adjust the width of the sidebar for screens smaller than 600px */
+@media (max-width: 600px) {
+  .sidebar-container {
+    width: 0;
+  }
+
+  .sidebar-container.toggled {
+    width: 250px;
+  }
+}

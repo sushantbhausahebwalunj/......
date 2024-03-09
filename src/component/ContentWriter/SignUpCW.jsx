@@ -147,15 +147,19 @@ export default function SignupMentor() {
                     />
                   </Grid>
                   <Grid item xs={12}>
-                    <Box display="flex" justifyContent="center">
+                    <Box display="flex" flexDirection="column" alignItems="center">
                       <Button component="label" variant="contained" startIcon={<CloudUploadIcon />}>
                         {fileName}
                         <input
                           type="file"
                           hidden
+                          accept=".pdf,.docx"
                           onChange={(e) => setFileName(e.target.files[0].name)}
                         />
                       </Button>
+                      <Typography variant="body2" style={{ color: 'green' }}>
+                        Only .docx and .pdf files are accepted
+                      </Typography>
                     </Box>
                   </Grid>
                   <Grid item xs={1}>

@@ -1,11 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { 
-  Dashboard,
-  PersonAddAltOutlined,
-  ManageAccountsOutlined,
-  NoteAltOutlined,
-  DescriptionOutlined,
   AccountCircle,
   ExitToApp,
   VpnKey ,
@@ -14,13 +9,6 @@ import {
   Bookmark,
   DeleteForever,
   PersonAdd,
-  Home,
-  Person,
-  Assignment,
-  AccountBalance,
-  AddCircleOutline,
-  RateReviewOutlined,
-  Add as AddIcon,
 } from '@mui/icons-material';
 import MenuIcon from '@mui/icons-material/Menu';
 import { Avatar, Typography, Button,IconButton, useMediaQuery, useTheme } from '@mui/material';
@@ -40,7 +28,7 @@ const toggleCollapseLogic = (setCollapse) => {
 };
 
 
-export const SidebarCW = () => {
+export const SidebarMentor = () => {
   const [photo, setPhoto] = useState('/path/to/default/photo.jpg');
   const [isCollapsebar, setCollapse] = useState(false);
   const theme = useTheme();
@@ -142,4 +130,4 @@ export const SidebarCW = () => {
   toggleCollapseLogic(setCollapse);
   };
 
-export default SidebarCW;
+export default SidebarMentor;
