@@ -18,8 +18,7 @@ function LearnerDashboard() {
   return (
     <div>
       <Header2 />
-      {/* Pass handleMenuSelection to Tabs so it can update the currentSelection */}
-      <Tabs onMenuSelection={handleMenuSelection} />
+      {location.pathname.startsWith('/learner/profile') ? <></> : <Tabs />}
       <div style={{ display: 'flex' }}>
         {/* The SidebarContent receives the currentSelection as a prop */}
         {location.pathname.startsWith('/learner/profile') ? null : <SidebarContent currentSelection={currentSelection} />}

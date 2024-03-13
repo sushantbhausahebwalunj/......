@@ -1,41 +1,43 @@
 import * as React from 'react';
 import CssBaseline from '@mui/material/CssBaseline';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import Link from '@mui/material/Link';
-import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 function Copyright() {
 
   return (
-    <Typography variant="body2" color="text.primary" sx={{ color: '#FFFFFF' }}>
+    <Typography variant="body2" color="text.secondary">
       {'Copyright © 2023 - '}
       {new Date().getFullYear()}
       {'. '}
       <Link color="inherit" href="https://abhyaskar.com/">
-         Abhyaskar. 
+        Abhyaskar.
       </Link>{' '}
-       {' All right reserved, '}
+      {' All right reserved, '}
       <Link color="inherit" href="https://abhyaskar.com/">
-          Cookie Policy,
+        Cookie Policy,
       </Link>{' '}
-      
+
       <Link color="inherit" href="https://abhyaskar.com/">
-           Privacy and Terms.
+        Privacy and Terms.
       </Link>{' '}
-      
+
     </Typography>
   );
 }
+
+// TODO remove, this demo shouldn't need to reset the theme.
+const defaultTheme = createTheme();
 
 export default function StickyFooter() {
 
   const theme = createTheme();
 
   return (
-
-<Box sx={{ mb: '60px' }}>
+    <Box sx={{ pb: '60px' }}>
 
     <ThemeProvider theme={theme}>
       <Box
@@ -47,21 +49,24 @@ export default function StickyFooter() {
       >
         <CssBaseline />
 
-        <Box
-          component="footer"
-          sx={{
-            py: 1,
-            px: 2,
-            mt: 'auto',
-            backgroundColor: '#141E46'
-           }}
-        >
-          <Container maxWidth="md" style={{ display: 'flex', justifyContent: 'center' }}>
-           <Copyright />
-          </Container>
+          <Box
+            component="footer"
+            sx={{
+              py: 1,
+              px: 2,
+              mt: 'auto',
+              backgroundColor: (theme) =>
+                theme.palette.mode === 'light'
+                  ? theme.palette.grey[200]
+                  : theme.palette.grey[800],
+            }}
+          >
+            <Container maxWidth="md" style={{ display: 'flex', justifyContent: 'center' }}>
+              <Copyright />
+            </Container>
+          </Box>
         </Box>
-      </Box>
-    </ThemeProvider>
+      </ThemeProvider>
     </Box>
   );
 }
