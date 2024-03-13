@@ -32,7 +32,7 @@ function WriteContent() {
   return (
     <Container maxWidth="xl" style={{backgroundColor:"white",padding:"2%"}}>
       <Paper elevation={1} style={{padding:"20px"}}>
-        <Typography variant='h4' align="center"  style={{fontStyle: 'italic', fontFamily: 'Trattatello'}}>Create Blog</Typography>
+        <Typography variant='h4' align="center"  style={{fontStyle: 'italic', fontFamily: 'Trattatello'}}>Create Article</Typography>
       </Paper>
       <Paper elevation={1} style={{padding:"20px", marginTop:"20px", backgroundColor:"#D2E0FB"}}>
         <Grid container spacing={2}>

@@ -24,7 +24,6 @@ import InviteProfile from "./component/Learner/InviteProfile";
 import EditProfile from "./component/Learner/EditProfile";
 import Delete from "./component/Learner/Delete"
 import SavedArticle from "./component/ContentWriter/SavedArticle";
-import ProfileArticle from "./component/Learner/ProfileArticle";
 
 import ApprovalCW from "./component/ContentWriter/ApprovalCW";
 import FetchFeedback from "./component/Admin/FetchFeedback"
@@ -57,7 +56,7 @@ const AppRoutes = () => {
       <Route path="content-learner" element={<ContentPageLearner />}/>
       <Route path="profile" element={<ProfilePageLearner/>}/>
       <Route path="profile/change-pass" element={<ChangePassword />} />
-      <Route path="profile/articles" element={<ProfileArticle/>} />
+      <Route path="profile/articles" element={<Article/>} />
       <Route path="profile/saved-articles" element={<SavedArticle/>} />
       <Route path="profile/request-todel" element={<Delete/>} />
       <Route path="profile/invite" element={<InviteProfile />} />
