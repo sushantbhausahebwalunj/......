@@ -1,15 +1,19 @@
 import { Container, Grid, Typography,Button,Box } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Header2 from "../../Global/Header2";
 import Advertisement from "../../Global/Advertisement";
+import MyContext from "../context/ContextData";
 
 function ArticleContent() {
+  const {addToSave} = useContext(MyContext)
   const { title } = useParams();
 
   useEffect(() => {
     // Fetch the article content using the title
   }, [title]);
+
+
 
   return (
     <div>
@@ -25,7 +29,7 @@ function ArticleContent() {
               </Grid>
               <Grid item xs={12}>
                 <Typography variant="body2" component="h2" gutterBottom>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque fugiat modi voluptate magni sint, quam porro, dignissimos incidunt libero impedit qui. Officia blanditiis voluptates nemo dolorem eligendi odio, reiciendis ea?
+                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque fugiat modi voluptate magni sint, quam porro, dignissimos incidunt libero impedit qui. Officia blanditiis voluptates nemo dolorem eligendi odio, reiciendis ea?
                   Accusantium repudiandae molestiae at, unde corrupti maiores quaerat tempore, voluptates, animi provident tempora cupiditate veniam doloribus quisquam nulla commodi recusandae veritatis ad magnam vel. Aliquam incidunt quos sint velit optio?
                   Nesciunt sint autem voluptatibus. Similique, neque eaque! Saepe obcaecati eum, dolore ipsum laboriosam voluptate dicta quasi est. Perferendis adipisci modi deleniti, est eaque itaque ut incidunt debitis asperiores consequuntur aspernatur?
                   Commodi esse aut blanditiis vel unde tempora debitis perspiciatis nesciunt ab modi ipsam, corrupti dignissimos qui repellendus deleniti ducimus autem sunt quibusdam totam sint. Reprehenderit eligendi quae exercitationem natus fuga?

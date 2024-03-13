@@ -21,6 +21,7 @@
     "dayjs": "^1.11.10",
     "export-to-csv": "^1.2.3",
     "formik": "^2.4.5",
+    "jodit-react": "^4.0.15",
     "jspdf": "^2.5.1",
     "jspdf-autotable": "^3.8.2",
     "material-react-table": "^2.11.3",

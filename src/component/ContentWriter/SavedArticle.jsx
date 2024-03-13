@@ -9,6 +9,8 @@ function SavedArticle() {
     const [filterAnchorEl, setFilterAnchorEl] = React.useState(null);
     const [sortAnchorEl, setSortAnchorEl] = React.useState(null);
     const [searchTerm, setSearchTerm] = useState('');
+
+  
   
     const handleFilterClick = (event) => {
       setFilterAnchorEl(event.currentTarget);
@@ -25,7 +27,9 @@ function SavedArticle() {
     const handleSortClose = () => {
       setSortAnchorEl(null);
     };
-  
+    
+
+     
     const cards = [
       { title: 'Artifical intelligence', rating: 5, writer: 'Vaishnavi'},
       { title: 'Big data', rating: 4, writer: 'Aniket'},
@@ -33,6 +37,14 @@ function SavedArticle() {
       { title: 'Data structures', rating: 2, writer: 'Content Writer'},
       { title: 'Cryptography', rating: 5, writer: 'Content Writer'},
       { title: 'Robotics', rating: 1, writer: 'Content Writer'},
+      { title: 'Robotics', rating: 1, writer: 'Content Writer'},
+      { title: 'Robotics', rating: 1, writer: 'Content Writer'},
+      { title: 'Robotics', rating: 1, writer: 'Content Writer'},
+      { title: 'Robotics', rating: 1, writer: 'Content Writer'},
+      { title: 'Robotics', rating: 1, writer: 'Content Writer'},
+
+      
+
     ];
   
     const handleSearchChange = (event) => {
@@ -46,7 +58,7 @@ function SavedArticle() {
   
     return (
       <div>
-        <Header/>
+        {/* <Header/> */}
         <Grid container>
           <Grid item xs={1} style={{border:"1px solid black" , backgroundColor:"#141E46"}}>
             {/* Add your content here */}
