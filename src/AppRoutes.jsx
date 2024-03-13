@@ -26,6 +26,9 @@ import Delete from "./component/Learner/Delete"
 import SavedArticle from "./component/ContentWriter/SavedArticle";
 import ProfileArticle from "./component/Learner/ProfileArticle";
 
+import ApprovalCW from "./component/ContentWriter/ApprovalCW";
+import FetchFeedback from "./component/Admin/FetchFeedback"
+import ArticleContent from "./component/ContentWriter/ArticleContent";
 
 const AppRoutes = () => {
   return (
@@ -35,14 +38,18 @@ const AppRoutes = () => {
     <Route path="/signup" element={<Signup_Common/>}/>
     <Route path="/signup/learner" element={<SignupLearner/>}/>
     <Route path="/signup/contentwriter" element={<SignupCW/>}/>
+    <Route path="/signup/contentwriter/approval" element={<ApprovalCW/>} />
     <Route path="/signup/mentor" element={<SignupMentor/>}/>
     <Route path="/login" element={<SignIn/>}/>
     <Route path="/articles" element={<Article/>}/>
+    <Route path="/articles/:title" element={<ArticleContent />} />
+   
 
     <Route path="/admin" element={<AdminDashboard/>}>
       <Route index element={<div>Welcome to Admin Dashboard</div>} />
       <Route path="user-management" element={<UserManagement/>}/>
       <Route path="article-management" element={<ArticleManagement/>}/>
+      <Route path="feedback-management" element={<FetchFeedback/>}/>
     </Route>
     
     <Route path="/learner" element={<LearnerDashboard />}>

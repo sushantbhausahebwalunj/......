@@ -1,338 +1,228 @@
-import React from "react";
-import { useForm, Controller } from "react-hook-form";
-import Container from "@mui/material/Container";
-import Paper from "@mui/material/Paper";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import TextField from "@mui/material/TextField";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
-import InputLabel from "@mui/material/InputLabel";
-import Grid from "@mui/material/Grid";
-import { Typography } from "@mui/material";
-import { Hd, TvOffSharp } from "@mui/icons-material";
-import { List, ListItem } from "@mui/material";
-import FormHelperText from "@mui/material/FormHelperText";
-import Button from "@mui/material/Button";
+import {
+  MaterialReactTable,
+  createMRTColumnHelper,
+  useMaterialReactTable,
+} from 'material-react-table';
+import { Box, Button, Container, Paper, Typography,TextField } from '@mui/material';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
+import { data } from './feedbackData';
+import { IconButton } from '@mui/material';
+import EditIcon from '@mui/icons-material/Edit';
+import DeleteIcon from '@mui/icons-material/Delete';
+import DetailIcon from '@mui/icons-material/Details';
+import { useMediaQuery } from '@mui/material';
+import StarIcon from '@mui/icons-material/Star';
+import { useState } from 'react';
 
-const MyList = () => {
-  console.log("Entered");
-  return (
-    <List
-      disablePadding={true}
-      dense={true}
-      sx={{
-        listStyleType: "disc",
-        listStylePosition: "inside",
-      }}
-      style={{ fontSize: "12px" }}
-    >
-      <ListItem sx={{ display: "list-item" }}>
-        <strong>Full Name:</strong> This field should capture the student's full
-        legal name.
-      </ListItem>
-      <ListItem sx={{ display: "list-item" }}>
-        <strong>Mobile Number:</strong> This field should capture the student's
-        mobile phone number.
-      </ListItem>
-      <ListItem sx={{ display: "list-item" }}>
-        <strong>College Email Id:</strong> This field should capture the
-        student's college email address.
-      </ListItem>
-      <ListItem sx={{ display: "list-item" }}>
-        <strong>Personal Email Id:</strong> This field should capture the
-        student's personal email address. This will be used for login.
-      </ListItem>
-      <ListItem sx={{ display: "list-item" }}>
-        <strong>Date of Birth:</strong> This field should capture the student's
-        date of birth. Use a calendar control to make it easy for users to enter
-        this information.
-      </ListItem>
-      <ListItem sx={{ display: "list-item" }}>
-        <strong>Gender:</strong> This field should capture the student's gender.
-        Use a drop-down menu with options for male, female, and other.
-      </ListItem>
-      <ListItem sx={{ display: "list-item" }}>
-        Password will be sent to the student's Personal Email address along with
-        a verification link.
-      </ListItem>
-    </List>
-  );
-};
+function FetchFeedback() {
 
-const AddSingle = () => {
-  const onSubmit = (data) => console.log(data);
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-    control,
-  } = useForm({
-    mode: "onChange",
-  });
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const [selectedRow, setSelectedRow] = useState(null);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [showEditPaper, setShowEditPaper] = useState(false);
 
-  return (
-    <Container
-      style={{
-        // border: "1px solid black",
-        marginLeft: "18%",
-        marginTop: "3%",
-        backgroundColor: "#F0F4FB",
-        paddingRight: "20%",
-        paddingBottom: "10%",
-      }}
-    >
-      <Typography
-        variant="h6"
-        component="h2"
-        gutterBottom
-        style={{ marginTop: "5%", marginLeft: "10%", padding: "1%" }}
-      >
-        Add Single Student
-      </Typography>
-      <Paper
-        style={{
-          width: "calc(100% - 10px)",
-          display: "flex",
-          flexDirection: "row",
-          padding: "", // Remove or reduce the padding
-          justifyContent: "space-between",
-          height: "calc(100% - 10px)",
-          marginTop: "2%",
-          marginLeft: "10%",
-          marginRight: "1%",
+  
+  
+  // This will be true if the viewport width is less than or equal to 600px
+  const isSmallScreen = useMediaQuery('(max-width:600px)');
+
+  // Set the width of the table based on the viewport width
+  const tableWidth = isSmallScreen ? '90vw' : '70vw';
+
+  const iconhandleEdit = (row) => {
+    console.log('Edit clicked for row:', row);
+    setSelectedRow(row);
+    setIsEditOpen(true);
+    setShowEditPaper(true);
+  };
+  const iconhandleDetail = (row) => {
+    console.log('Detail clicked for row:', row);
+    setSelectedRow(row);
+    setIsDetailOpen(true);
+  };
+  
+  const iconhandleeditClose = () => {
+    setIsEditOpen(false);
+  };
+
+  const iconhandleDetailClose = () => {
+    setIsDetailOpen(false);
+  };
+  const columnHelper = createMRTColumnHelper();
+
+const columns = [
+  columnHelper.accessor('id', {
+    header: 'ID',
+    size: 50, // Reduced width
+  }),
+  columnHelper.accessor('email', {
+    header: 'Email-ID',
+    size: 150, // Reduced width
+  }),
+  columnHelper.accessor('rating', {
+    header: 'Rating',
+    size: 150,
+    Cell: ({ cell: { value } }) => (
+      <Box>
+        {[...Array(value)].map((_, index) => (
+          <StarIcon key={index} style={{ color: 'gold' }} />
+        ))}
+      </Box>
+    ),
+  }),
+  
+ 
+  
+  columnHelper.accessor('module', {
+    header: 'Module',
+    size: 150, // Reduced width
+  }),
+  columnHelper.accessor('description', {
+    header: 'Description',
+    size: 150, // Reduced width
+  }),
+  columnHelper.accessor('manage', {
+      header: 'Manage',
+      size: 120,
+      Cell: ({ cell }) => (
+        <div>
+          {/* Add your edit, delete, and detail icons here */}
+          <IconButton onClick={() => iconhandleEdit(cell.row.original)}>
+            <EditIcon  />
+          </IconButton>
+          <IconButton onClick={() => iconhandleDelete(cell.row.original)}>
+            <DeleteIcon />
+          </IconButton>
+          <IconButton onClick={() => iconhandleDetail(cell.row.original)}>
+            <DetailIcon />
+          </IconButton>
+        </div>
+      ),
+    }),
+];
+
+  // const [showPopup, setShowPopup] = useState(false);
+
+  const handleEdit = (row) => {
+      
+    };
+    
+    const handleDelete = (row) => {
+      // Implement delete logic here
+      console.log('Delete clicked for row:', row);
+    };
+    
+    const handleDetail = (row) => {
+      // Implement detail logic here
+      console.log('Detail clicked for row:', row);
+    };
+
+  const handleExportRows = (rows) => {
+    const doc = new jsPDF();
+    const tableData = rows.map((row) => Object.values(row.original));
+    const tableHeaders = columns.map((c) => c.header);
+
+    autoTable(doc, {
+      head: [tableHeaders],
+      body: tableData,
+    });
+
+    doc.save('mrt-pdf-example.pdf');
+  };
+
+  const table = useMaterialReactTable({
+    columns,
+    data,
+    layoutMode: 'grid-no-grow',
+    enableRowSelection: true,
+    columnFilterDisplayMode: 'popover',
+    initialState:{density:"compact"},
+    paginationDisplayMode: 'pages',
+    positionToolbarAlertBanner: 'bottom',
+    renderTopToolbarCustomActions: ({ table }) => (
+      <Box
+        sx={{
+          display: 'flex',
+          gap: '16px',
+          padding: '8px',
+          marginTop: 0,
+          flexWrap: 'wrap',
+          justifyContent: 'center',
         }}
       >
-        <Card style={{ flex: 2 }}>
-          <CardContent style={{ paddingBottom: 0 }}>
-            <Grid container spacing={0} alignItems="center">
-              <Grid item xs={12} sm={4}>
-                <InputLabel htmlFor="profile" style={{ color: "black" }}>
-                  Full Name :
-                </InputLabel>
-              </Grid>
-              <Grid item xs={12} sm={7}>
-                <TextField
-                  {...register("fullName", {
-                    required: "Full name is required",
-                  })}
-                  error={Boolean(errors.fullName)}
-                  helperText={errors.fullName?.message}
-                  id="fullName"
-                  size="small"
-                  variant="outlined"
-                  fullWidth
-                  style={{ backgroundColor: "#FFFFFF" }}
-                />
-              </Grid>
-            </Grid>
-          </CardContent>
+     
+     <Button
+          disabled={table.getPrePaginationRowModel().rows.length === 0}
+          //export all rows, including from the next page, (still respects filtering and sorting)
+          onClick={() =>
+            handleExportRows(table.getPrePaginationRowModel().rows)
+          }
+          startIcon={<FileDownloadIcon />}
+          
+        >
+          Export All Rows
+        </Button>
+        <Button
+          disabled={table.getRowModel().rows.length === 0}
+          //export all rows as seen on the screen (respects pagination, sorting, filtering, etc.)
+          onClick={() => handleExportRows(table.getRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Page Rows
+        </Button>
+        <Button
+          disabled={
+            !table.getIsSomeRowsSelected() && !table.getIsAllRowsSelected()
+          }
+          //only export selected rows
+          onClick={() => handleExportRows(table.getSelectedRowModel().rows)}
+          startIcon={<FileDownloadIcon />}
+        >
+          Export Selected Rows
+        </Button>
 
-          <CardContent style={{ paddingBottom: 0 }}>
-            <Grid container spacing={0} alignItems="center">
-              <Grid item xs={12} sm={4}>
-                <InputLabel htmlFor="phoneNumber" style={{ color: "black" }}>
-                  Mobile Number :
-                </InputLabel>
-              </Grid>
-              <Grid item xs={12} sm={7}>
-                <TextField
-                  {...register("phoneNumber", {
-                    required: "Phone number is required",
-                    pattern: {
-                      value: /^[0-9]{10}$/,
-                      message: "Invalid phone number",
-                    },
-                  })}
-                  error={Boolean(errors.phoneNumber)}
-                  helperText={errors.phoneNumber?.message}
-                  id="phoneNumber"
-                  variant="outlined"
-                  fullWidth
-                  size="small"
-                  style={{ backgroundColor: "#FFFFFF" }}
-                />
-              </Grid>
-            </Grid>
-          </CardContent>
+        </Box>
+  ),
+});
 
-          <CardContent style={{ paddingBottom: 0 }}>
-            <Grid container spacing={0} alignItems="center">
-              <Grid item xs={12} sm={4}>
-                <InputLabel htmlFor="collegeEmail" style={{ color: "black" }}>
-                  College Email Id :
-                </InputLabel>
-              </Grid>
-              <Grid item xs={12} sm={7}>
-                <TextField
-                  //               InputLabelProps={{
-                  //   style: { fontSize: "0.8rem" }, // Reduce the font size of the label
-                  // }}
-                  // InputProps={{
-                  //   style: { height: "1.8rem", padding: "0 0.5rem" }, // Reduce the size of the text field
-                  // }}
-                  {...register("collegeEmail", {
-                    required: "College email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: "Invalid email address",
-                    },
-                  })}
-                  error={Boolean(errors.collegeEmail)}
-                  helperText={errors.collegeEmail?.message}
-                  id="collegeEmail"
-                  variant="outlined"
-                  fullWidth
-                  size="small"
-                  style={{ backgroundColor: "#FFFFFF" }}
-                />
-              </Grid>
-            </Grid>
-          </CardContent>
-          <CardContent style={{ paddingBottom: 0 }}>
-            <Grid container spacing={0} alignItems="center">
-              <Grid item xs={12} sm={4}>
-                <InputLabel htmlFor="personalEmail" style={{ color: "black" }}>
-                  Personal Email Id:
-                </InputLabel>
-              </Grid>
-              <Grid item xs={12} sm={7}>
-                <TextField
-                  {...register("personalEmail", {
-                    required: "Personal email is required",
-                    pattern: {
-                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
-                      message: "Invalid email address",
-                    },
-                  })}
-                  error={Boolean(errors.personalEmail)}
-                  helperText={errors.personalEmail?.message}
-                  id="personalEmail"
-                  variant="outlined"
-                  fullWidth
-                  size="small"
-                  style={{ backgroundColor: "#FFFFFF" }}
-                />
-              </Grid>
-            </Grid>
-          </CardContent>
-          <CardContent style={{ paddingBottom: 0 }}>
-            <Grid container spacing={0} alignItems="center">
-              <Grid item xs={12} sm={4}>
-                <InputLabel htmlFor="dob" style={{ color: "black" }}>
-                  Date of Birth :
-                </InputLabel>
-              </Grid>
-              <Grid item xs={12} sm={7}>
-                <TextField
-                  // InputLabelProps={{
-                  //   style: { fontSize: "0.8rem" }, // Reduce the font size of the label
-                  // }}
-                  // InputProps={{
-                  //   style: { height: "1.8rem", padding: "0 0.5rem" }, // Reduce the size of the text field
-                  // }}
-                  {...register("dob", {
-                    required: "Date of birth is required",
-                  })}
-                  error={Boolean(errors.dob)}
-                  helperText={errors.dob?.message}
-                  id="dob"
-                  variant="outlined"
-                  fullWidth
-                  type="date"
-                  size="small"
-                  shrink={true}
-                  style={{ backgroundColor: "#FFFFFF" }}
-                />
-              </Grid>
-            </Grid>
-          </CardContent>
+  return (
+   
+    <Container maxWidth="xl" style={{backgroundColor:"white" }}>
+      <Typography variant="h4" mt={2} mb={2}>FeedBack</Typography>
+    <Paper elevation={3} style={{padding:"10px", backgroundColor:"#D2E0FB", display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+    <div style={{ width: '70vw' , overflow: 'auto' }}> {/* Set your desired width here*/}
+      <MaterialReactTable table={table} />
+    </div>
+    </Paper>
+    {showEditPaper && selectedRow && (
+    <Paper elevation={3} style={{padding:"10px", marginTop: '20px', width: '50%', marginLeft: 'auto', marginRight: 'auto', position: 'relative'}}>
+    {/* <Typography variant="h6" style={{ position: 'absolute', top: '10px', right: '10px' }}>{new Date(selectedRow.date).toLocaleDateString()}</Typography> */}
+    <Typography variant="h6">ID: {selectedRow.id}</Typography>
+    <Typography variant="h6">Email ID: {selectedRow.email}</Typography>
+    <Typography variant="h6">Module: {selectedRow.module}</Typography>
+    <Typography variant="h6">Rating: {selectedRow.rating}</Typography>
+    <Typography variant="h6">Description: {selectedRow.description}</Typography>
+    <Paper style={{padding:"10px"}}>
+      <TextField
+        style={{marginTop: '10px'}}
+        fullWidth
+        placeholder="Reply as admin"
+        variant="outlined"
+      />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+        <Button variant="contained" color="primary" style={{ marginRight: '10px' }}>Download</Button>
+        <Button variant="contained" color="secondary">Delete</Button>
+      </div>
+    </Paper>
+  </Paper>
+    )}
 
-          <CardContent style={{ paddingBottom: "20px" }}>
-            <Grid container spacing={0} alignItems="center">
-              <Grid item xs={12} sm={4}>
-                <InputLabel htmlFor="gender" style={{ color: "black" }}>
-                  Gender :
-                </InputLabel>
-              </Grid>
-              <Grid item xs={12} sm={7}>
-                <Controller
-                  name="gender"
-                  control={control}
-                  defaultValue=""
-                  render={({ field }) => (
-                    <Select
-                      {...field}
-                      variant="outlined"
-                      fullWidth
-                      size="small"
-                      style={{ backgroundColor: "#FFFFFF" }}
-                    >
-                      <MenuItem value="">
-                        <em>None</em>
-                      </MenuItem>
-                      <MenuItem value={"Male"}>Male</MenuItem>
-                      <MenuItem value={"Female"}>Female</MenuItem>
-                      <MenuItem value={"Other"}>Other</MenuItem>
-                    </Select>
-                  )}
-                />
-                {errors.gender && (
-                  <FormHelperText error>{errors.gender.message}</FormHelperText>
-                )}
-              </Grid>
-            </Grid>
-          </CardContent>
-          <Grid
-            container
-            justifyContent="center"
-            style={{ marginTop: "5%", marginLeft: "15%" }}
-          >
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              size="small"
-              onClick={handleSubmit}
-            >
-              Submit
-            </Button>
-          </Grid>
-        </Card>
-
-        <Card style={{ flex: 1, padding: "1%", margin: "0" }}>
-          <CardContent style={{ paddingBottom: 0 }}>
-            <Card style={{ padding: "0%", margin: "0%" }}>
-              <CardContent style={{ paddingTop: "0", paddingBottom: "0" }}>
-                <Grid container direction="column" alignItems="center">
-                  <Typography
-                    variant="h6"
-                    component="h2"
-                    gutterBottom
-                    align="center"
-                  >
-                    Instructions
-                  </Typography>
-                  <List
-                    disablePadding={true}
-                    dense={true}
-                    sx={{
-                      listStyleType: "disc",
-                      listStylePosition: "inside",
-                    }}
-                    style={{ fontSize: "15%", lineHeight: "1.2" }} // Reduced font size and adjusted line height
-                  >
-                    {<MyList />}
-                  </List>
-                </Grid>
-              </CardContent>
-            </Card>
-          </CardContent>
-        </Card>
-      </Paper>
+     {/* {isEditOpen && <EditQuesPopup  iseditable={true} isopen={isEditOpen} inhandleClose={iconhandleeditClose} row={selectedRow} />}
+    {isDetailOpen && <EditQuesPopup iseditable={false} isopen={isDetailOpen} inhandleClose={iconhandleDetailClose} row={selectedRow} /> } */}
     </Container>
-  );
-};
+  )
+}
 
-export default AddSingle;
+export default FetchFeedback

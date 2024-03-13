@@ -3,7 +3,7 @@ import {
   createMRTColumnHelper,
   useMaterialReactTable,
 } from 'material-react-table';
-import { Box, Button, Container, Paper, Typography } from '@mui/material';
+import { Box, Button, Container, Paper, Typography,TextField } from '@mui/material';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
@@ -13,13 +13,15 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DetailIcon from '@mui/icons-material/Details';
 import { useMediaQuery } from '@mui/material';
-import { useState } from 'react';
+import React, { useState } from 'react';
+import TextEditor from '../../Global/TextEditor';
 
 function ArticleManagement() {
 
   const [isEditOpen, setIsEditOpen] = useState(false);
   const [selectedRow, setSelectedRow] = useState(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [showEditPaper, setShowEditPaper] = useState(false);
   
   // This will be true if the viewport width is less than or equal to 600px
   const isSmallScreen = useMediaQuery('(max-width:600px)');
@@ -31,7 +33,9 @@ function ArticleManagement() {
     console.log('Edit clicked for row:', row);
     setSelectedRow(row);
     setIsEditOpen(true);
+    setShowEditPaper(true); // Show the Paper when EditIcon is clicked
   };
+
   const iconhandleDetail = (row) => {
     console.log('Detail clicked for row:', row);
     setSelectedRow(row);
@@ -113,7 +117,7 @@ const columns = [
   // const [showPopup, setShowPopup] = useState(false);
 
   const handleEdit = (row) => {
-      <EditQuesPopup/>
+    
     };
     
     const handleDelete = (row) => {
@@ -196,13 +200,34 @@ const columns = [
 
 
   return (
-    <Container maxWidth="xl" style={{backgroundColor:"white",padding:"2%"}}>
-      <Typography variant="h4" mt={2} mb={2}>Articles</Typography>
+     <Container maxWidth="xl" style={{backgroundColor:"white",padding:"2%"}}>
+      <Typography variant="h4" mt={1} mb={2}>Articles</Typography>
       <Paper elevation={3} style={{padding:"10px", backgroundColor:"#D2E0FB", display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
-    <div style={{ width: '70vw' , overflow: 'auto' }}> {/* Set your desired width here*/}
-      <MaterialReactTable table={table} />
-    </div>
+        <div style={{ width: '70vw' , overflow: 'auto' }}> {/* Set your desired width here*/}
+          <MaterialReactTable table={table} />
+        </div>
+      </Paper>
+      {showEditPaper && selectedRow && (
+    <Paper elevation={3} style={{padding:"10px", marginTop: '20px', width: '50%', marginLeft: 'auto', marginRight: 'auto', position: 'relative'}}>
+    <Typography variant="h6" style={{ position: 'absolute', top: '10px', right: '10px' }}>{new Date(selectedRow.date).toLocaleDateString()}</Typography>
+    <Typography variant="h6">Author: {selectedRow.author}</Typography>
+    <Typography variant="h6">Domain: {selectedRow.domain}</Typography>
+    <Typography variant="h6">Sub-Domain: {selectedRow.subdomain}</Typography>
+    <Paper style={{padding:"10px"}}>
+      <TextEditor/>
+      <TextField
+        style={{marginTop: '10px'}}
+        fullWidth
+        placeholder="Reply as admin"
+        variant="outlined"
+      />
+      <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: '10px' }}>
+        <Button variant="contained" color="primary" style={{ marginRight: '10px' }}>Approve</Button>
+        <Button variant="contained" color="secondary">Reject</Button>
+      </div>
     </Paper>
+  </Paper>
+  )}
     </Container>
   )
 }
