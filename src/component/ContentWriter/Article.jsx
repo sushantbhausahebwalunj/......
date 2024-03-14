@@ -1,16 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState , useContext } from 'react';
 import Header from '../../Global/Header';
 import { TextField, Box, InputAdornment, Grid, Card, CardContent, Typography, Menu, MenuItem, Button } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { useNavigate } from 'react-router-dom';
 import Rating from '@mui/material/Rating';
 import Footer2 from '../../Global/Footer2';
+import MyContext from '../context/ContextData';
 
 function Article() {
   const navigate = useNavigate();
   const { contentData } = useContext(MyContext); // Get contentData from context
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [filterAnchorEl, setFilterAnchorEl] = React.useState(null);
   const [sortAnchorEl, setSortAnchorEl] = React.useState(null);
