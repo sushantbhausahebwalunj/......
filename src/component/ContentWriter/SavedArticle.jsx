@@ -58,7 +58,6 @@ function SavedArticle() {
   
     return (
       <div>
-        {/* <Header/> */}
         <Grid container>
           <Grid item xs={1} style={{border:"1px solid black" , backgroundColor:"#141E46"}}>
             {/* Add your content here */}
